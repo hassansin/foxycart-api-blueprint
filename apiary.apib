@@ -2023,6 +2023,46 @@ An item category offers a way to give items additional behaviors that cannot be 
 + Response 200 (application/hal+json)
 
     + Attributes (Base Resource)
+
+
+
+## Tax Item Categories [/item_categories/{id}/tax_item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a item_category.
+
+### View a list of tax_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new tax_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
     
     
 # Group Tax
@@ -2089,6 +2129,45 @@ Once a tax rate is configured, it must be applied to a item category for it to b
 + Response 200 (application/hal+json)
 
     + Attributes (Base Resource)
+    
+
+
+## Tax Item Categories [/taxes/{id}/tax_item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a tax.
+
+### View a list of tax_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new tax_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
     
 
 
@@ -3600,7 +3679,76 @@ This resource represents a relationship between a payment method set and a hoste
 
     + Attributes (Base Resource)
    
+
+
+
+# Group Tax Item Category
+
+## Tax Item Category [/tax_item_categories/{id}]
+
+This resource represents a relationship between a tax and an item category which that tax is applied to. After creating a tax, you then create tax item category entry to ensure any items purchased within that item category will have the tax you specify applied to the transaction.
+
+To apply a tax to an item category, create a new tax_item_category resource. To remove a tax from an item category, delete the tax_item_category resource.
+
++ Parameters
+    + id (number) - Id of a `tax_item_category`.
+
+### View a tax_item_category [GET]
++ Request
     
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Update a tax_item_category [PATCH]
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Replace a tax_item_category [PUT]
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Delete a tax_item_category [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+    
+        
 # Group Integration
 
 ## Integration [/integration/{id}]
@@ -4475,6 +4623,27 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - Include Payment Method Set Hosted Payment Gateway Base Resource 
 - date_created
 - date_modified
+
+
+
+
+## Tax Item Category Base Resource (object)
+
+### Properties
+
+- `item_category_uri` (required): `https://api-sandbox.foxycart.com/item_categories/13`
+- `tax_uri` (required): `https://api-sandbox.foxycart.com/taxes/1672`
+
+
+## Tax Item Category Resource (Base Resource)
+
+### Properties
+
+- Include Tax Item Category Base Resource 
+- date_created
+- date_modified
+
+
 
 ## Attribute Base Resource (object)
 

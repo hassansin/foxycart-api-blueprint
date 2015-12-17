@@ -1902,8 +1902,134 @@ The receipt_url link relationship leads to the full HTML receipt.
 + Response 200 (application/hal+json)
 
     + Attributes (Transaction Resource)
- 
 
+
+## Items [/transactions/{id}/items]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of items [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new item [POST]
+
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+
+
+## Payments [/transactions/{id}/payments]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of payments [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+ 
+     
+## Applied Taxes [/transactions/{id}/applied_taxes]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of applied_taxes [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Transaction Custom Fields [/transactions/{id}/transaction_custom_fields]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of transaction_custom_fields [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new transaction_custom_field [POST]
+
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+
+
+    
 # Group Subscription
 
 ## Subscription [/subscriptions/{id}]
@@ -3748,7 +3874,191 @@ To apply a tax to an item category, create a new tax_item_category resource. To 
     + Attributes (Base Resource)
     
     
+
+# Group Item
+
+## Item [/items/{id}]
+
+An item is a product added to a cart or contained in a transaction. Items that are part of a transaction can not be modified. Cart items, however, can be modified.
+
++ Parameters
+    + id (number) - Id of a `item`.
+
+### View a item [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Update a item [PATCH]
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Replace a item [PUT]
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
         
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Delete a item [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+
+# Group Payment
+
+## Payment [/payments/{id}]
+
+The historical record of payment applied to a given transaction which includes the payment gateway response, purchase order, third party id and/or masked payment card information.
+
++ Parameters
+    + id (number) - Id of a `payment`.
+
+### View a payment [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Resource)    
+            
+            
+            
+# Group Applied Tax
+
+## Applied Tax [/applied_taxes/{id}]
+
+The historical record of taxes that were applied to a given transaction.
+
++ Parameters
+    + id (number) - Id of a `applied_tax`.
+
+### View a applied_tax [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Applied Tax Resource)
+    
+    
+
+# Group Transaction Custom Field
+
+## Transaction Custom Field [/transaction_custom_fields/{id}]
+
+For a transaction, a custom field is historical record of the custom field added to a transaction during checkout. When created during the original transaction, they are also duplicated as transaction attributes. Custom fields can be added, removed and modified after a transaction is complete.
+
+Custom fields also exist on carts and multiship shipments.
+
+Warning: in the future, custom fields may be removed, so it's advised to use attributes for reporting purposes.
+
++ Parameters
+    + id (number) - Id of a `transaction_custom_field`.
+
+### View a transaction_custom_field [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Update a transaction_custom_field [PATCH]
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Replace a transaction_custom_field [PUT]
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Delete a transaction_custom_field [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+
+            
 # Group Integration
 
 ## Integration [/integration/{id}]
@@ -4643,6 +4953,97 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - date_created
 - date_modified
 
+
+
+## Item Base Resource (object)
+
+### Properties
+
+- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/1`
+- `name` (required): `good stuff UPDATED`
+- `price` (required, number): 15
+- `quantity` (number): 5
+- `quantity_min` (number): 0
+- `quantity_max` (number): 0
+- `weight` (number): 0.1
+- `code`
+- `parent_code`
+- `discount_name`
+- `discount_type`
+- `discount_details`
+- `subscription_frequency`
+- `subscription_start_date`
+- `subscription_next_transaction_date`
+- `subscription_end_date`
+- `shipto`
+- `url`
+- `image`
+- `length` (number): 0
+- `width` (number): 0
+- `height` (number): 0
+- `expires` (number): 0
+
+## Item Resource (Base Resource)
+
+### Properties
+
+- Include Item Base Resource 
+- `is_future_line_item` (boolean): false
+- date_created
+- date_modified
+
+
+## Payment Resource (Base Resource)
+
+### Properties
+
+- `type`: `plastic`
+- `gateway_type`
+- `processor_response`
+- `processor_response_details`
+- `purchase_order`
+- `cc_number_masked`: `xxxxxxxxxxxx1111`
+- `cc_type`: `Visa`
+- `cc_exp_month`: `12`
+- `cc_exp_year`: `2020`
+- `fraud_protection_score` (number): 0
+- `paypal_payer_id`
+- `amount` (number): 0
+- `date_created`
+- `date_modified`
+
+
+
+## Applied Tax Resource (Base Resource)
+
+### Properties
+
+- `rate` (number): 9.35
+- `name`: `TN`
+- `amount` (number): 1.7765
+- `apply_to_handling` (boolean): true
+- `apply_to_shipping` (boolean): true
+- `is_future_tax` (boolean): false
+- `shipto`
+- `date_created`
+- `date_modified`
+
+
+## Transaction Custom Field Base Resource (object)
+
+### Properties
+
+- `name` (required): `Marketing_Opt_In`
+- `value` (required): `1`
+- `is_hidden` (boolean): false
+
+## Transaction Custom Field Resource (Base Resource)
+
+### Properties
+
+- Include Transaction Custom Field Base Resource 
+- date_created
+- date_modified
 
 
 ## Attribute Base Resource (object)

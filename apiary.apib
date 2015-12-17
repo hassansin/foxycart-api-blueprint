@@ -2193,6 +2193,45 @@ This link relationship returns a collection of resources. You can easily paginat
 
     + Attributes (Payment Method Set Hosted Payment Gateway Resource)
     
+
+
+## Payment Method Set Fraud Protections [/payment_method_sets/{id}/fraud_protections]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a `payment_method_set`.
+
+### View a list of payment_method_set_fraud_protections [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new fraud_protection [POST]
+
++ Request (application/json)
+    
+    + Attributes (Fraud Protection Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Fraud Protection Resource)
+    
         
 
 # Group Coupon

@@ -2099,7 +2099,7 @@ Once a tax rate is configured, it must be applied to a item category for it to b
 A Payment Method Set is where you configure your payment gateway and your hosted gateways as being in live or test mode and where you enable the pay by purchase order option for your store. It also links to your payment gateway settings and your enabled hosted payment gateways. By default, the linked payment_gateway resource is automatically embedded in the response.
 
 + Parameters
-    + id (number) - Id of a payment_method_set.
+    + id (number) - Id of a `payment_method_set`.
 
 ### View a payment_method_set [GET]
 + Request
@@ -2154,7 +2154,46 @@ A Payment Method Set is where you configure your payment gateway and your hosted
 + Response 200 (application/hal+json)
 
     + Attributes (Base Resource)
+
+
+## Payment Method Set Hosted Payment Gateways [/payment_method_sets/{id}/hosted_payment_gateways]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a `payment_method_set`.
+
+### View a list of payment_method_set_hosted_payment_gateways [GET]
+
++ Request
     
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new payment_method_set_hosted_payment_gateway [POST]
+
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+        
 
 # Group Coupon
 
@@ -3458,6 +3497,70 @@ This resource represents a relationship between a coupon and an item_category fo
     + Attributes (Base Resource)
     
 
+
+# Group Payment Method Set Hosted Payment Gateway
+
+## Payment Method Set Hosted Payment Gateway [/payment_method_set_hosted_payment_gateways/{id}]
+
+This resource represents a relationship between a payment method set and a hosted payment gateway. To add a hosted payment gateway to a payment method set, you create a payment method set hosted payment gateway resource by sending a POST to the `payment_method_set_hosted_payment_gateways` link relationship of a `payment_method_set` using the `hosted_payment_gateway` uri from its self link relationship.
+
++ Parameters
+    + id (number) - Id of a `payment_method_set_hosted_payment_gateway`.
+
+### View a payment_method_set_hosted_payment_gateway [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Update a payment_method_set_hosted_payment_gateway [PATCH]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Replace a payment_method_set_hosted_payment_gateway [PUT]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Delete a payment_method_set_hosted_payment_gateway [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+   
     
 # Group Integration
 
@@ -4316,6 +4419,23 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - date_created
 - date_modified
 
+
+
+## Payment Method Set Hosted Payment Gateway Base Resource (object)
+
+### Properties
+
+- `payment_method_set_uri`: `https://api-sandbox.foxycart.com/payment_method_sets/6`
+- `hosted_payment_gateway_uri`: `https://api-sandbox.foxycart.com/hosted_payment_gateways/390`
+
+
+## Payment Method Set Hosted Payment Gateway Resource (Base Resource)
+
+### Properties
+
+- Include Payment Method Set Hosted Payment Gateway Base Resource 
+- date_created
+- date_modified
 
 ## Attribute Base Resource (object)
 

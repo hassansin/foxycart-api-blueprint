@@ -2226,7 +2226,7 @@ This link relationship returns a collection of resources. You can easily paginat
 
 + Parameters
 
-    + id (number) - Id of a template_set.
+    + id (number) - Id of a coupon.
 
 ### View a list of coupon_codes [GET]
 
@@ -2257,6 +2257,44 @@ This link relationship returns a collection of resources. You can easily paginat
 
     + Attributes (Coupon Code Resource)
     
+
+## Coupon Item Categories [/coupons/{id}/item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a coupon.
+
+### View a list of coupon_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new coupon_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+        
 
 # Group Template Set
 
@@ -3354,6 +3392,72 @@ This resource is a historical record for every transaction which has used a spec
 + Response 200 (application/hal+json)
 
     + Attributes (Coupon Code Transaction Resource)
+
+
+# Group Coupon Item Category
+
+## Coupon Item Category [/coupon_item_categories/{id}]
+
+This resource represents a relationship between a coupon and an item_category for the purpose of limiting which categories the coupon applies to. To add an item category limitation to a coupon, you create a coupon item category resource by sending a POST to the `coupon_item_categories` link relationship of a `coupon` using the `item_category` uri from its self link relationship.
+
++ Parameters
+    + id (number) - Id of a `coupon_item_category`.
+
+### View a coupon_item_category [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Update a coupon_item_category [PATCH]
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Replace a coupon_item_category [PUT]
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Delete a coupon_item_category [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
     
 # Group Integration
 
@@ -4194,6 +4298,24 @@ Send a GET with an email query parameter to see if an existing user exists for t
 
 - date_created: 2015-05-21T14:46:15-0700
 - date_modified: 2015-05-21T14:46:15-0700
+
+
+## Coupon Item Category Base Resource (object)
+
+### Properties
+
+- coupon_uri: `https://api-sandbox.foxycart.com/coupons/813`
+- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/307`
+
+
+## Coupon Item Category Resource (Base Resource)
+
+### Properties
+
+- Include Coupon Item Category Base Resource 
+- date_created
+- date_modified
+
 
 ## Attribute Base Resource (object)
 

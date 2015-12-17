@@ -2220,6 +2220,43 @@ Coupons are where you configure discounts for your customers to use for an entir
     + Attributes (Base Resource)
     
 
+## Coupon Codes [/coupons/{id}/codes]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a template_set.
+
+### View a list of coupon_codes [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new coupon_code [POST]
+
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
 
 # Group Template Set
 
@@ -3207,7 +3244,117 @@ A language override allows you to customize an individual string output by FoxyC
     + Attributes (Base Resource)
     
 
+# Group Coupon Code
 
+## Coupon Code [/coupon_codes/{id}]
+
+Coupon codes are configured for each coupon you set up. They are unique codes to be used by your customers to obtain the coupon's discount.
+
+If you would like to create multiple [coupon](https://api.foxycart.com/rels/coupon) codes at once, see the coupon documentation.
+
++ Parameters
+    + id (number) - Id of a `coupon_code`.
+
+### View a coupon_code [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Update a coupon_code [PATCH]
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Replace a coupon_code [PUT]
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Delete a coupon_code [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+## Coupon Code Transactions [/coupon_codes/{id}/transactions]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a coupon_code.
+
+### View a list of coupon_code_transactions [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+    
+
+# Group Coupon Code Transaction
+
+## Coupon Code Transaction [/coupon_code_transactions/{id}]
+
+This resource is a historical record for every transaction which has used a specific coupon code. It contains link relationships to the coupon code used and the transaction it was used with.
+
++ Parameters
+    + id (number) - Id of a `coupon_code_transaction`.
+
+### View a coupon_code_transaction [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Transaction Resource)
+    
 # Group Integration
 
 ## Integration [/integration/{id}]
@@ -4024,6 +4171,29 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - date_created: 2015-05-21T14:46:15-0700
 - date_modified: 2015-05-21T14:46:15-0700
 
+
+## Coupon Code Base Resource (object)
+
+### Properties
+
+- code (required): foo
+
+## Coupon Code Resource (Base Resource)
+
+### Properties
+
+- Include Coupon Code Base Resource
+- `number_of_uses_to_date`: 0
+- date_created: 2015-05-21T14:46:15-0700
+- date_modified: 2015-05-21T14:46:15-0700
+
+
+## Coupon Code Transaction Resource (Base Resource)
+
+### Properties
+
+- date_created: 2015-05-21T14:46:15-0700
+- date_modified: 2015-05-21T14:46:15-0700
 
 ## Attribute Base Resource (object)
 

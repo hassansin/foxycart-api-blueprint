@@ -132,8 +132,6 @@ When creating a client resource, the response will include the OAuth Access and 
     
 
 ## Client Attributes [GET /clients/{id}/attributes]
-Attributes for This Client
-
 
 + Parameters
     + id (number) - Id of a Client.
@@ -1212,7 +1210,6 @@ When creating a store resource, the response will include the OAuth Access and R
     + id (number) - Id of a User.
 
 ### Create a new store [POST]
-+ Relation: create
 + Request (application/json)
     
     + Attributes (Store Base Resource)
@@ -1229,7 +1226,7 @@ When creating a store resource, the response will include the OAuth Access and R
     
 
 ### View a list of stores [GET]
-+ Relation: list
+
 + Request (application/json)
     
     + Headers
@@ -1785,7 +1782,40 @@ A customer is the person who completes a transaction. Whenever a transaction tak
 + Response 200 (application/hal+json)
 
     + Attributes (Base Resource)
-    
+
+
+## Customer Attributes [/customers/{id}/attributes]
++ Parameters
+    + id (number) - Id of a customer.
+
+### View a list of attributes [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new attribute [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Attribute Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)    
 
 # Group Cart
 
@@ -2098,6 +2128,54 @@ A shipment resource contains the address for where items in a transaction groupe
 
     + Attributes (Shipment Resource)
 
+
+
+## Billing Addresses [/transactions/{id}/billing_addresses]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of billing_addresses [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Billing Address [/transactions/{id}/billing_address]
+
+The billing addresses associated with this resource. These are historical addresses after a transaction takes place.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a billing_address [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Billing Address Resource)
+    
+    
     
 # Group Subscription
 
@@ -5175,6 +5253,24 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - `date_created`: `2015-04-15T08:46:39-0700`
 - `date_modified`: `2015-04-15T08:46:39-0700`
 
+
+## Billing Address Resource (Base Resource)
+
+### Properties
+
+- `address_name`: `Default Billing Address`
+- `first_name`: `First`
+- `last_name`: `Last`
+- `company`: `my company`
+- `address1`: `12345 Any Street`
+- `address2`
+- `city`: `Any City`
+- `region`: `TN`
+- `customer_postal_code`: `37211`
+- `customer_country`: `US`
+- `customer_phone`
+- `date_created`: `2012-09-26T12:49:59-0700`
+- `date_modified`: `2012-10-26T10:34:44-0700`
 
 
 ## Attribute Base Resource (object)

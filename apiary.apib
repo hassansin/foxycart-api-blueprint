@@ -2029,6 +2029,75 @@ This link relationship returns a collection of resources. You can easily paginat
     
 
 
+## Discounts [/transactions/{id}/discounts]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of discounts [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+
+## Shipments [/transactions/{id}/shipments]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of shipments [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Shipment [/transactions/{id}/shipment]
+
+A shipment resource contains the address for where items in a transaction grouped by a common shipto were sent.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a shipment [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Shipment Resource)
+
     
 # Group Subscription
 
@@ -4057,6 +4126,28 @@ Warning: in the future, custom fields may be removed, so it's advised to use att
     
 
 
+# Group Discount
+
+## Discount [/discounts/{id}]
+
+Discounts are historical records of coupons used in a transaction.
+
++ Parameters
+    + id (number) - Id of a `discount`.
+
+### View a discount [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Discount Resource)
+
 
             
 # Group Integration
@@ -5044,6 +5135,46 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - Include Transaction Custom Field Base Resource 
 - date_created
 - date_modified
+
+
+## Discount Resource (Base Resource)
+
+### Properties
+
+- `code`: `tester`
+- `amount` (number): -1
+- `name`: `tester`
+- `display`: `-1.00`
+- `is_taxable` (boolean): false
+- `is_future_discount` (boolean): false
+- `date_created`
+- `date_modified`
+
+
+## Shipment Resource (Base Resource)
+
+### Properties
+
+- `address_name`: `Default Shipping Address`
+- `first_name`: `John`
+- `last_name`: `Doe`
+- `company`
+- `address1`: `1234 Anystreet`
+- `address2`
+- `city`: `NASHVILLE`
+- `region`: `TN`
+- `postal_code`: `37211`
+- `country`: `US`
+- `phone`: `555-555-55555`
+- `shipping_service_id`: 55
+- `shipping_service_description`: `FedEx Home Delivery`
+- `total_item_price` (number): 10
+- `total_tax` (number): 1.99
+- `total_shipping` (number): 11.29
+- `total_price` (number): 23.28
+- `date_created`: `2015-04-15T08:46:39-0700`
+- `date_modified`: `2015-04-15T08:46:39-0700`
+
 
 
 ## Attribute Base Resource (object)

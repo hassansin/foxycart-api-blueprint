@@ -4243,188 +4243,24 @@ Send a GET with an email query parameter to see if an existing user exists for t
 
 
 
-## Subscription Settings Base Resource(object)
+:[](data-structures/subscription-settings.apib)
 
-### Properties
-
-- `automatically_charge_past_due_amount` (boolean): true
-
-## Subscription Settings Resource (Base Resource)
-
-### Properties
-
-- Include Subscription Settings Base Resource
-- `date_created`: `2013-08-19T10:58:39-0700`
-- `date_modified`: `2013-06-06T15:26:07-0700`
-
-## Item Category Base Resource (object)
-
-### Properties
-
-- `admin_email_template_uri` (required): `https://api-sandbox.foxycart.com/email_templates/10`
-- `customer_email_template_uri`: `https://api-sandbox.foxycart.com/email_templates/10`
-- `code` (required): `DEFAULT`
-- `name` (required): `Default for all products`
-- `item_delivery_type` (enum, required)
-   
-    - Default: notshipped
-    - Members       
-        - shipped
-        - downloaded
-        - flat_rate
-        - pickup
-        - notshipped
-
-- `max_downloads_per_customer`: 3
-- `max_downloads_time_period`: 24
-- `default_weight`: 1
-- `default_weight_unit` (required): `LBS`
-- `default_length_unit` (required): `IN`
-- `shipping_flat_rate_type` (required): `per_order`
-- `shipping_flat_rate`: 0
-- `handling_fee_type` (enum, required)
-    - Default: none
-    - Members:
-        - none
-        - flat_per_order
-        - flat_per_item
-        - flat_percent
-        - flat_percent_with_minimum
-- `handling_fee`: 0
-- `handling_fee_minimum`: 0
-- `handling_fee_percentage`: 0
-- `customs_value`: 0
-- `discount_type`(enum)
-    - quantity_amount
-    - quantity_percentage
-    - price_amount
-    - price_percentage
-- `discount_name`: null
-- `discount_details`: null
-- `send_customer_email` (boolean): false
-- `send_admin_email` (boolean): false
-- `admin_email`: null
+:[](data-structures/item-category.apib)
 
 
-## Item Category Resource (Base Resource)
-
-### Properties
-- Include Item Category Base Resource
-- date_created
-- date_modified
+:[](data-structures/tax.apib)
 
 
-## Tax Base Resource (object)
-
-### Properties
-- `name` (required): `Taxes`
-- `type` (required, enum)
-    - global
-    - country
-    - region
-    - local
-- `country`
-- `region`
-- `city`
-- `is_live` (boolean) : false
-- `apply_to_shipping` (boolean) : false
-- `use_origin_rates` (boolean) : false
-- `exempt_all_customer_tax_ids` (boolean) : false
-- `rate` (required, number): 0.9
+:[](data-structures/payment-method-set.apib)
 
 
-## Tax Resource (Base Resource)
-
-### Properties
-- Include Tax Base Resource
-- date_created
-- date_modified
+:[](data-structures/coupon.apib)
 
 
-## Payment Method Set Base Resource (object)
-
-### Properties
-- `gateway_uri`: `https://api-sandbox.foxycart.com/payment_gateways/6`
-- `description` (required): `Default Payment Method Set`
-- `is_live` (boolean): false
-- `is_purchase_order_enabled` (boolean): false
+:[](data-structures/template-set.apib)
 
 
-## Payment Method Set Resource (Base Resource)
-
-### Properties
-- Include Payment Method Set Base Resource
-- date_created
-- date_modified
-
-
-## Coupon Base Resource (object)
-
-### Properties
-- `name` (required): `test coupon`
-- `start_date`: `2015-12-01T00:00:00-0800`
-- `end_date`: null
-- `number_of_uses_allowed` (number): 0
-- `number_of_uses_allowed_per_customer` (number): 0
-- `number_of_uses_allowed_per_code` (number): 0
-- `product_code_restrictions`: ``
-- `coupon_discount_type` (required, enum)
-    - quantity_amount
-    - quantity_percentage
-    - price_amount
-    - price_percentage
-- `coupon_discount_details` (required): `1-3`
-- `combinable` (boolean): false
-- `multiple_codes_allowed` (boolean): false
-- `exclude_category_discounts` (boolean): false
-- `exclude_line_item_discounts` (boolean): false
-- `is_taxable` (boolean): false
-
-
-## Coupon Resource (Base Resource)
-
-### Properties
-- Include Coupon Base Resource
-- `number_of_uses_to_date` (number): 0
-- date_created
-- date_modified
-
-
-## Template Set Base Resource (object)
-
-### Properties
-- `cart_template_uri` (required): `https://api-sandbox.foxycart.com/cart_templates/14`
-- `cart_include_template_uri` (required): `https://api-sandbox.foxycart.com/cart_include_templates/16`
-- `checkout_template_uri` (required): `https://api-sandbox.foxycart.com/checkout_templates/18`
-- `receipt_template_uri` (required): `https://api-sandbox.foxycart.com/receipt_templates/20`
-- `email_template_uri` (required): `https://api-sandbox.foxycart.com/email_templates/10`
-- `code` (required): `DEFAULT`
-- `description` (required): `Default Template Set`
-- `language` (required): `english`
-- `locale_code` (required): `en_US`
-- `config` (required)
-
-## Template Set Resource (Base Resource)
-
-### Properties
-- Include Template Set Base Resource
-- date_created
-- date_modified
-
-
-## Cart Template Base Resource (object)
-
-### Properties
-- `description` (required): `Cart Template`
-- `content`
-- `content_url`
-
-## Cart Template Resource (Base Resource)
-
-### Properties
-- Include Cart Template Base Resource
-- date_created
-- date_modified
+:[](data-structures/cart-template.apib)
 
 
 ## Cart Include Template Base Resource (Cart Template Base Resource)
@@ -4443,152 +4279,15 @@ Send a GET with an email query parameter to see if an existing user exists for t
 ## Receipt Template Resource (Cart Template Resource)
 
 
-## Email Template Base Resource (object)
+:[](data-structures/email-template.apib)
 
-### Properties
-- `description` (required): `Email Receipt Template`
-- `subject`
-- `content_html`
-- `content_html_url`
-- `content_text`
-- `content_text_url`
-
-## Email Template Resource (Base Resource)
-
-### Properties
-- Include Email Template Base Resource
-- date_created
-- date_modified
-
-## Default Template Resource (Base Resource)
-
-### Properties
-- message: `These are the default templates used for the cart, checkout, receipt and emails.`
-- values (object)
-    - *rel (string)* (object)        
-        - content
-        - content_url 
+:[](data-structures/default-template.apib) 
                 
                 
-## Error Entry Base Resource (object)
-
-### Properties
-- `hide_error` (boolean): false
-
-## Error Entry Resource (Base Resource)
-
-### Properties
-- Include Error Entry Base Resource
-- `url`: `https://api-sandbox.foxycart.com/api_rest.php`
-- `error_message`: `DataFeed Failed: (2) 2012-08-10 12:12:49 No data returned for  [0]\n<url> malformed`
-- `user_agent`: `curl/7.21.3 (i386-pc-win32) libcurl/7.21.3 OpenSSL/0.9.8q zlib/1.2.5`
-- `referrer`
-- `ip_address`: `10.1.249.103`
-- `ip_country`
-- `post_values`
-- `get_values`
-- date_created
-- date_modified
+:[](data-structures/error-entry.apib)
 
 
-## Payment Gateway Base Resource (object)
-
-### Properties
-- `description`: `Default Payment Gateway`
-- `type` (required, enum)
-    - `migs_anz_egate`
-    - authorize
-    - beanstream
-    - bluefin
-    - bluepay
-    - braintree
-    - cardstream
-    - orbital_salem
-    - orbital_tampa
-    - merchantesolutions
-    - migs_commweb
-    - cybersource
-    - lucy
-    - datacash
-    - digitalriver
-    - durango
-    - echo_gateway
-    - emeriopayments
-    - emppay
-    - eprocessingnetwork
-    - eway
-    - fatzebra
-    - firstdata
-    - firstdata_e4
-    - goemerchant
-    - helcim
-    - inspire
-    - quickbooks
-    - litle
-    - migs
-    - moneris
-    - netbilling
-    - nmi
-    - offline
-    - paperless
-    - payconex
-    - paygate
-    - payjunction
-    - payleap
-    - payline
-    - paymentexpress
-    - paymentexpress_ws
-    - paymentsense
-    - payflowpro
-    - paypal
-    - paypal_express
-    - paypoint_gateway
-    - paypoint_metacharge
-    - propay
-    - paytrace
-    - plugnpay
-    - plugnpay_authnet
-    - psigate
-    - quantumgateway
-    - realex
-    - sagepayments
-    - sagepay
-    - securenet
-    - securetrading
-    - stripe
-    - totalapps
-    - transaction_express
-    - transfirst
-    - trustcommerce
-    - usaepay
-    - vanco
-    - virtualmerchant
-    - wepay
-    - westpac
-    - worldpay
-    - worldpay_business
-    - worldpay_online
-    - yuupay
-- `use_auth_only` (boolean): false
-- `account_id`
-- `account_key`
-- `third_party_key`
-- `config_3d_secure` (enum):
-    - all_cards
-    - maestro_only
-    - `all_cards_require_valid_response`
-    - `maestro_only_require_valid_response`
-- `additional_fields`
-- `test_account_id`: `BxFSnPy7`
-- `test_account_key`: `8SPBTpqs4uf2ZwM8`
-- `test_third_party_key`
-
-## Payment Gateway Resource (Base Resource)
-
-### Properties
-- Include Payment Gateway Base Resource
-- date_created
-- date_modified
+:[](data-structures/payment-gateway.apib)
 
 
 ## Hosted Payment Gateway Base Resource (Payment Gateway Base Resource)
@@ -4596,360 +4295,68 @@ Send a GET with an email query parameter to see if an existing user exists for t
 ## Hosted Payment Gateway Resource (Payment Gateway Resource)
 
 
-## Fraud Protection Base Resource (object)
+:[](data-structures/fraud-protection.apib)
 
-### Properties
+:[](data-structures/payment-method-expiring.apib)
 
-- description : "Default Min Fraud"
-- `score_threshold_reject` : 24
- 
-## Fraud Protection Resource (Base Resource)
 
-### Properties
+:[](data-structures/store-shipping-method.apib)
 
-- Include Fraud Protection Base Resource 
-- date_created
-- date_modified
 
-## Payment Method Expiring Resource (Base Resource)
+:[](data-structures/downloadable.apib)
 
-### Properties
+:[](data-structures/integration.apib)
 
-- `months_before_expiration`: 75
-- `first_name`: `Test`
-- `last_name`: `User`
-- `email`: `luke.stokes+apitest998@example.com`
-- `cc_type`: `Visa`
-- `cc_number_masked`: `xxxxxxxxxxxx1111`
-- `cc_exp_month`: `12`
-- `cc_exp_year`: `2020`
-- `date_created`: null
-- `date_modified`: `2013-08-16T14:13:54-0700`
 
 
-## Store Shipping Method Base Resource (object)
+:[](data-structures/language-override.apib)
 
-### Properties
 
-- `shipping_method_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_methods/1`
-- `shipping_container_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_containers/3`
-- `shipping_drop_type_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_drop_types/7`
-- `accountid`: null
-- `password`
-- `meter_number`
-- `authentication_key`
-- `use_for_domestic` (boolean): false
-- `use_for_international` (boolean): false
+:[](data-structures/coupon-code.apib)
 
-## Store Shipping Method Resource (Base Resource)
 
-### Properties
+:[](data-structures/coupon-code-transaction.apib)
 
-- Include Store Shipping Method Base Resource 
-- date_created
-- date_modified
 
+:[](data-structures/coupon-item-category.apib)
 
-## Downloadable Base Resource (object)
 
-### Properties
 
-- `item_category_uri` (required): `https://api-sandbox.foxycart.com/item_categories/307`
-- `name` (required): `Unicorn`
-- `code` (required): `unicorn`
-- `price` (number): 10
+:[](data-structures/payment-method-set-hosted-payment-gateway.apib)
 
-## Downloadable Resource (Base Resource)
 
-### Properties
 
-- Include Downloadable Base Resource 
-- `file_name`: `unicorn_web.png`
-- `file_size`: 267069
-- `upload_date`: `2015-04-16T09:33:28-0700`
-- `date_created`: `2015-04-16T09:33:28-0700`
-- `date_modified`: `2015-04-16T09:46:46-0700`
 
-## Integration Resource (Base Resource)
+:[](data-structures/tax-item-category.apib)
 
-### Properties
 
-- user_uri: https://api-sandbox.foxycart.com/users/2
-- client_id: super_duper_client_id
-- scope: user_full_access store_id_8 store_full_access
-- expires: 2147483647
-- project_name: My Super Project
-- project_description: A really cool project you should be excited about.
-- company_name: FoxyCart
-- company_url: http://www.foxycart.com
-- company_logo: http://www.foxycart.com/assets/templates/v02/slices/foxycart-seo-ecommerce.png
-- contact_name: Firstname Lastname
-- contact_email: example@example.com
-- `added_by_name`: Mada Baragau
-- `added_by_email`: mada_baragau@yahoo.com
 
+:[](data-structures/item.apib)
 
 
-## Language Override Base Resource (object)
+:[](data-structures/payment.apib)
 
-### Properties
 
-- code (required): cart_caption
-- gateway
-- custom_value (required): The Cart of Wonder
 
+:[](data-structures/applied-tax.apib)
 
-## Language Override Resource (Base Resource)
 
-### Properties
+:[](data-structures/transaction-custom-field.apib)
 
-- Include Language Override Base Resource
-- date_created: 2015-05-21T14:46:15-0700
-- date_modified: 2015-05-21T14:46:15-0700
 
+:[](data-structures/discount.apib)
 
-## Coupon Code Base Resource (object)
 
-### Properties
+:[](data-structures/shipment.apib)
 
-- code (required): foo
 
-## Coupon Code Resource (Base Resource)
-
-### Properties
-
-- Include Coupon Code Base Resource
-- `number_of_uses_to_date`: 0
-- date_created: 2015-05-21T14:46:15-0700
-- date_modified: 2015-05-21T14:46:15-0700
-
-
-## Coupon Code Transaction Resource (Base Resource)
-
-### Properties
-
-- date_created: 2015-05-21T14:46:15-0700
-- date_modified: 2015-05-21T14:46:15-0700
-
-
-## Coupon Item Category Base Resource (object)
-
-### Properties
-
-- coupon_uri: `https://api-sandbox.foxycart.com/coupons/813`
-- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/307`
-
-
-## Coupon Item Category Resource (Base Resource)
-
-### Properties
-
-- Include Coupon Item Category Base Resource 
-- date_created
-- date_modified
-
-
-
-## Payment Method Set Hosted Payment Gateway Base Resource (object)
-
-### Properties
-
-- `payment_method_set_uri`: `https://api-sandbox.foxycart.com/payment_method_sets/6`
-- `hosted_payment_gateway_uri`: `https://api-sandbox.foxycart.com/hosted_payment_gateways/390`
-
-
-## Payment Method Set Hosted Payment Gateway Resource (Base Resource)
-
-### Properties
-
-- Include Payment Method Set Hosted Payment Gateway Base Resource 
-- date_created
-- date_modified
-
-
-
-
-## Tax Item Category Base Resource (object)
-
-### Properties
-
-- `item_category_uri` (required): `https://api-sandbox.foxycart.com/item_categories/13`
-- `tax_uri` (required): `https://api-sandbox.foxycart.com/taxes/1672`
-
-
-## Tax Item Category Resource (Base Resource)
-
-### Properties
-
-- Include Tax Item Category Base Resource 
-- date_created
-- date_modified
-
-
-
-## Item Base Resource (object)
-
-### Properties
-
-- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/1`
-- `name` (required): `good stuff UPDATED`
-- `price` (required, number): 15
-- `quantity` (number): 5
-- `quantity_min` (number): 0
-- `quantity_max` (number): 0
-- `weight` (number): 0.1
-- `code`
-- `parent_code`
-- `discount_name`
-- `discount_type`
-- `discount_details`
-- `subscription_frequency`
-- `subscription_start_date`
-- `subscription_next_transaction_date`
-- `subscription_end_date`
-- `shipto`
-- `url`
-- `image`
-- `length` (number): 0
-- `width` (number): 0
-- `height` (number): 0
-- `expires` (number): 0
-
-## Item Resource (Base Resource)
-
-### Properties
-
-- Include Item Base Resource 
-- `is_future_line_item` (boolean): false
-- date_created
-- date_modified
-
-
-## Payment Resource (Base Resource)
-
-### Properties
-
-- `type`: `plastic`
-- `gateway_type`
-- `processor_response`
-- `processor_response_details`
-- `purchase_order`
-- `cc_number_masked`: `xxxxxxxxxxxx1111`
-- `cc_type`: `Visa`
-- `cc_exp_month`: `12`
-- `cc_exp_year`: `2020`
-- `fraud_protection_score` (number): 0
-- `paypal_payer_id`
-- `amount` (number): 0
-- `date_created`
-- `date_modified`
-
-
-
-## Applied Tax Resource (Base Resource)
-
-### Properties
-
-- `rate` (number): 9.35
-- `name`: `TN`
-- `amount` (number): 1.7765
-- `apply_to_handling` (boolean): true
-- `apply_to_shipping` (boolean): true
-- `is_future_tax` (boolean): false
-- `shipto`
-- `date_created`
-- `date_modified`
-
-
-## Transaction Custom Field Base Resource (object)
-
-### Properties
-
-- `name` (required): `Marketing_Opt_In`
-- `value` (required): `1`
-- `is_hidden` (boolean): false
-
-## Transaction Custom Field Resource (Base Resource)
-
-### Properties
-
-- Include Transaction Custom Field Base Resource 
-- date_created
-- date_modified
-
-
-## Discount Resource (Base Resource)
-
-### Properties
-
-- `code`: `tester`
-- `amount` (number): -1
-- `name`: `tester`
-- `display`: `-1.00`
-- `is_taxable` (boolean): false
-- `is_future_discount` (boolean): false
-- `date_created`
-- `date_modified`
-
-
-## Shipment Resource (Base Resource)
-
-### Properties
-
-- `address_name`: `Default Shipping Address`
-- `first_name`: `John`
-- `last_name`: `Doe`
-- `company`
-- `address1`: `1234 Anystreet`
-- `address2`
-- `city`: `NASHVILLE`
-- `region`: `TN`
-- `postal_code`: `37211`
-- `country`: `US`
-- `phone`: `555-555-55555`
-- `shipping_service_id`: 55
-- `shipping_service_description`: `FedEx Home Delivery`
-- `total_item_price` (number): 10
-- `total_tax` (number): 1.99
-- `total_shipping` (number): 11.29
-- `total_price` (number): 23.28
-- `date_created`: `2015-04-15T08:46:39-0700`
-- `date_modified`: `2015-04-15T08:46:39-0700`
-
-
-## Billing Address Resource (Base Resource)
-
-### Properties
-
-- `address_name`: `Default Billing Address`
-- `first_name`: `First`
-- `last_name`: `Last`
-- `company`: `my company`
-- `address1`: `12345 Any Street`
-- `address2`
-- `city`: `Any City`
-- `region`: `TN`
-- `customer_postal_code`: `37211`
-- `customer_country`: `US`
-- `customer_phone`
-- `date_created`: `2012-09-26T12:49:59-0700`
-- `date_modified`: `2012-10-26T10:34:44-0700`
+:[](data-structures/billing-address.apib)
 
 
 :[](data-structures/attribute.apib)
  
 
-## Timezone Resource (Base Resource)
-
-### Properties
-
-- message: The values listed here are the correct values for the Store timezone field. The values are listed in a values => timezone => timezone format.
-- values(object)
-    
-    - timezone (array)
-        - (object)
-            - timezone
-            - description
+:[](data-structures/timezone.apib)
             
 :[](data-structures/collection.apib)
 

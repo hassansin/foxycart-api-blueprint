@@ -1,0 +1,25 @@
+## Tax Base Resource (object)
+
+### Properties
+- `name` (required): `Taxes`
+- `type` (required, enum)
+    - global
+    - country
+    - region
+    - local
+- `country`
+- `region`
+- `city`
+- `is_live` (boolean) : false
+- `apply_to_shipping` (boolean) : false
+- `use_origin_rates` (boolean) : false
+- `exempt_all_customer_tax_ids` (boolean) : false
+- `rate` (required, number): 0.9
+
+
+## Tax Resource (Base Resource)
+
+### Properties
+- Include Tax Base Resource
+- date_created
+- date_modified

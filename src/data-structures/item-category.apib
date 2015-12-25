@@ -1,0 +1,55 @@
+## Item Category Base Resource (object)
+
+### Properties
+
+- `admin_email_template_uri` (required): `https://api-sandbox.foxycart.com/email_templates/10`
+- `customer_email_template_uri`: `https://api-sandbox.foxycart.com/email_templates/10`
+- `code` (required): `DEFAULT`
+- `name` (required): `Default for all products`
+- `item_delivery_type` (enum, required)
+   
+    - Default: notshipped
+    - Members       
+        - shipped
+        - downloaded
+        - flat_rate
+        - pickup
+        - notshipped
+
+- `max_downloads_per_customer`: 3
+- `max_downloads_time_period`: 24
+- `default_weight`: 1
+- `default_weight_unit` (required): `LBS`
+- `default_length_unit` (required): `IN`
+- `shipping_flat_rate_type` (required): `per_order`
+- `shipping_flat_rate`: 0
+- `handling_fee_type` (enum, required)
+    - Default: none
+    - Members:
+        - none
+        - flat_per_order
+        - flat_per_item
+        - flat_percent
+        - flat_percent_with_minimum
+- `handling_fee`: 0
+- `handling_fee_minimum`: 0
+- `handling_fee_percentage`: 0
+- `customs_value`: 0
+- `discount_type`(enum)
+    - quantity_amount
+    - quantity_percentage
+    - price_amount
+    - price_percentage
+- `discount_name`: null
+- `discount_details`: null
+- `send_customer_email` (boolean): false
+- `send_admin_email` (boolean): false
+- `admin_email`: null
+
+
+## Item Category Resource (Base Resource)
+
+### Properties
+- Include Item Category Base Resource
+- date_created
+- date_modified

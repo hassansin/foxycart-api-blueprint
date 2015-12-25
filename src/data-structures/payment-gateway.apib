@@ -1,0 +1,98 @@
+## Payment Gateway Base Resource (object)
+
+### Properties
+- `description`: `Default Payment Gateway`
+- `type` (required, enum)
+    - `migs_anz_egate`
+    - authorize
+    - beanstream
+    - bluefin
+    - bluepay
+    - braintree
+    - cardstream
+    - orbital_salem
+    - orbital_tampa
+    - merchantesolutions
+    - migs_commweb
+    - cybersource
+    - lucy
+    - datacash
+    - digitalriver
+    - durango
+    - echo_gateway
+    - emeriopayments
+    - emppay
+    - eprocessingnetwork
+    - eway
+    - fatzebra
+    - firstdata
+    - firstdata_e4
+    - goemerchant
+    - helcim
+    - inspire
+    - quickbooks
+    - litle
+    - migs
+    - moneris
+    - netbilling
+    - nmi
+    - offline
+    - paperless
+    - payconex
+    - paygate
+    - payjunction
+    - payleap
+    - payline
+    - paymentexpress
+    - paymentexpress_ws
+    - paymentsense
+    - payflowpro
+    - paypal
+    - paypal_express
+    - paypoint_gateway
+    - paypoint_metacharge
+    - propay
+    - paytrace
+    - plugnpay
+    - plugnpay_authnet
+    - psigate
+    - quantumgateway
+    - realex
+    - sagepayments
+    - sagepay
+    - securenet
+    - securetrading
+    - stripe
+    - totalapps
+    - transaction_express
+    - transfirst
+    - trustcommerce
+    - usaepay
+    - vanco
+    - virtualmerchant
+    - wepay
+    - westpac
+    - worldpay
+    - worldpay_business
+    - worldpay_online
+    - yuupay
+- `use_auth_only` (boolean): false
+- `account_id`
+- `account_key`
+- `third_party_key`
+- `config_3d_secure` (enum):
+    - all_cards
+    - maestro_only
+    - `all_cards_require_valid_response`
+    - `maestro_only_require_valid_response`
+- `additional_fields`
+- `test_account_id`: `BxFSnPy7`
+- `test_account_key`: `8SPBTpqs4uf2ZwM8`
+- `test_third_party_key`
+
+## Payment Gateway Resource (Base Resource)
+
+### Properties
+- Include Payment Gateway Base Resource
+- date_created
+- date_modified

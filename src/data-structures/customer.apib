@@ -1,0 +1,25 @@
+## Customer Base Resource (object)
+
+### Properties
+
+- `last_login_date`: null
+- `first_name` (required): `Test`
+- `last_name` (required): `User`
+- `email` (required): `luke.stokes+apitest998@example.com`
+- `password_salt` (string)
+- `password_hash`: `4443fe50df6b177ba84b78dd91f0958a`
+- `password_hash_type`: `md5`
+- `password_hash_config` (string)
+- `forgot_password`(string)
+
+## Customer Resource (Base Resource)
+
+### Properties
+
+- id (number)
+- `last_login_date`
+- Include Customer Base Resource
+- `forgot_password_timestamp`
+- `is_anonymous`(boolean)
+- date_created
+- date_modified

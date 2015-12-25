@@ -1,0 +1,23 @@
+## HAL Resource (object)
+HAL Resource is the base type for all HAL resource models. It contains two predefined elements containing hypertext 
+links of the given resource and embedded resources. Derived resource models may add additional elements to specify the 
+state of the resource.
+
+### Properties
+
+- `_links` (object)
+
+    - curies (array[object])
+        - (object)
+            - properties
+                - name : fx
+                - href : `https://api.foxycart.com/rels/{rel}`
+                - templated : true
+            
+    - *rel (Relation)* (Link)
+        
+    
+- `_embedded` (object)
+
+## Relation (string)
+HAL introduces for Link relation types an extended representation of RFC 5988:

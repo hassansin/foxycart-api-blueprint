@@ -4215,254 +4215,30 @@ Send a GET with an email query parameter to see if an existing user exists for t
 
 # Data Structures
 
-## Store Resource (Base Resource)
-
-### Properties
-
-- Include Store Base Resource 
-- `is_active`: false
-- `first_payment_date`: null
-- `date_created`: `2010-04-24T19:25:02-0700`
-- `date_modified`: `2013-07-19T11:47:26-0700`
-## Store Base Resource (object)
-
-### Properties
-
-- `store_version_uri`: `https://api.foxycart.com/property_helpers/store_versions/20`
-- `store_name` (required): `Example Store`
-- `store_domain` (required): `example`
-- `use_remote_domain`: false
-- `store_url` (required): `https://example.com/catalog`
-- `receipt_continue_url`: `http://www.example.com/thankyou`
-- `store_email` (required): `someone@example.com`
-- `from_email`: `helpdesk@example.com`
-- `postal_code` (required): `37211`
-- `region` (required): `TN`
-- `country` (required): `US`
-- `locale_code`: `en_US`
-- `hide_currency_symbol`: false
-- `hide_decimal_characters`: false
-- `use_international_currency_symbol`: false
-- `language`: `english`
-- `logo_url`: ``
-- `checkout_type`: `default_account`
-- `bcc_on_receipt_email`: false
-- `use_webhook`: true
-- `webhook_url`: `http://example.com/my_webhook_script`
-- `webhook_key`: `some super secure password your mom could not not guess`
-- `use_cart_validation`: false
-- `use_single_sign_on`: false
-- `single_sign_on_url`: `http://example.com/my_single_sign_on_script`
-- `use_email_dns`: false
-- `customer_password_hash_type`: `phpass`
-- `customer_password_hash_config`: `8`
-- `features_multiship`: false
-- `shipping_address_type`: `residential`
-- `timezone`: `America/Chicago`
-- `unified_order_entry_password`: `here I am, buying all your stufz`
-- `affiliate_id`: 0
+:[](data-structures/store.apib)
 
 
-## User Resource (Base Resource)
+:[](data-structures/user.apib)
 
-### Properties
-
-- Include User Base Resource 
-- `date_created`: `2007-05-23T16:09:12-0700`
-- `date_modified`: `2013-07-10T22:37:49-0700`
-
-## User Base Resource (object)
-
-### Properties
-
-- `first_name` (required) : `John`
-- `last_name` (required) : `Doe`
-- `email` (required) : `john.doe@example.com`
-- `phone`: `555-555-5555`
-- `affiliate_id`: 0
-- `is_programmer`: true
-- `is_front_end_developer`: false
-- `is_designer`: false
-- `is_merchant`: true
-
-## Client Resource (Base Resource)
-
-### Properties
-
-- client_secret
-- date_created
-- date_modified
-- Include Client Base Resource 
-
-## Client Base Resource (object)
-
-### Properties
-
-- client_id (string)
-- redirect_uri (string, required): http://example.com
-- `javascript_origin_uri` (string, required)
-- project_name: Example Project
-- project_description: `A really cool project using the API to make awesome. Lots - nd lots of awesome. Oh, and money too. People like money.`
-- company_name (required): Super amazing company
-- company_url: http://example.com
-- company_logo (string)
-- contact_name (required): John Doe
-- contact_email (required): john.doe@example.com
-- contact_phone (required): `555-555-5555`
+:[](data-structures/client.apib)
  
 
 
-## UserAccess Base Resource (object)
-
-### Properties
-
-- user_uri (string, required)
-- store_uri (string, required)
-- `is_default_store` (boolean)
- 
-## UserAccess Resource (Base Resource)
-
-### Properties
-
-- Include UserAccess Base Resource 
-- date_created
-- date_modified
+:[](data-structures/user-access.apib)
 
 
-## Customer Base Resource (object)
+:[](data-structures/customer.apib)
 
-### Properties
-
-- `last_login_date`: null
-- `first_name` (required): `Test`
-- `last_name` (required): `User`
-- `email` (required): `luke.stokes+apitest998@example.com`
-- `password_salt` (string)
-- `password_hash`: `4443fe50df6b177ba84b78dd91f0958a`
-- `password_hash_type`: `md5`
-- `password_hash_config` (string)
-- `forgot_password`(string)
-
-## Customer Resource (Base Resource)
-
-### Properties
-
-- id (number)
-- `last_login_date`
-- Include Customer Base Resource
-- `forgot_password_timestamp`
-- `is_anonymous`(boolean)
-- date_created
-- date_modified
-
-## Store Version Resource (Base Resource)
-
-### Properties
-
-- `version` - `0.7.2`
-- `changelog_blog_url` - `https://www.foxycart.com/blog/0.7.2`
-- `changelog_url` - `https://admin.foxycart.com/v/0.7.2/changelog.html`
-- `changelog_content` - `... html ...`
-- `cart_types`(object)
-    - `colorbox`(object)
-        - `javascript_library`(object)
-            - `name` - `JQuery`
-            - `version` - `1.6.4`
-            - `url` - `//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js`  
-        - `javascript`(array[string])          
-        - `css` (array[string])      
-    - `none`(object)
-        - `javascript_library`(object)
-            - `name` - `JQuery`
-            - `version` - `1.6.4`
-            - `url` - `//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js`
-        - `javascript`(array[string])
-        - `css`(array[string])
-- `version_date` - `2012-01-13T12:05:06-0800`
-- `is_visible`(boolean) - 1
-- `is_beta`(boolean) - 0
-- `date_created` - `2012-01-13T12:05:06-0800`
-- `date_modified` - `2012-01-13T12:05:06-0800`
+:[](data-structures/store-version.apib)
 
 
-## Cart Base Resource (object)
-
-### Properties
-
-- `customer_uri`: `https://api.foxycart.com/customers/8`
-- `total_shipping`: 0
-- `total_future_shipping`: 0
+:[](data-structures/cart.apib)
 
 
-## Cart Resource (Base Resource)
-
-### Properties
-
-- Include Cart Base Resource
-- `total_item_price`: 0
-- `total_tax`: 0
-- `total_order`: 0
-- date_created
-- date_modified
+:[](data-structures/transaction.apib)
 
 
-## Transaction Base Resource (object)
-
-### Properties
-
-- `id`: 3820290
-- `is_test` (boolean): true
-- `hide_transaction` (boolean): false
-- `data_is_fed` (boolean): true
-- `transaction_date`: `2013-06-06T17:26:07-05:00`
-- `locale_code`: `en_US`
-- `customer_first_name`: `Test`
-- `customer_last_name`: `User`
-- `customer_email`: `testing@example.com`
-- `customer_ip`: `10.1.248.210`
-- `ip_country`
-- `total_item_price` (number): 10
-- `total_tax` (number): 1.9
-- `total_shipping` (number): 0
-- `total_future_shipping` (number): 0
-- `total_order` (number): 11.9
-- `status` (enum[string])
-    - approved
-    - authorized
-    - declined
-    - pending
-    - rejected
-- `date_created`: null
-- `date_modified`: `2013-06-06T15:26:07-0700`
-
-## Transaction Resource (Base Resource)
-
-### Properties
-
-- Include Transaction Base Resource
-
-
-## Subscription Base Resource (object)
-
-### Properties
-
-- `next_transaction_date`: `2014-05-01T00:00:00-0700`
-- `start_date` (required): `2010-09-15T00:00:00-0700`
-- `end_date`
-- `frequency`: `1m`
-- `error_message`
-- `past_due_amount`: 0
-- `first_failed_transaction_date`
-- `is_active`: false
-- `third_party_id`
-- `date_created`
-- `date_modified`
-
-## Subscription Resource (Base Resource)
-
-### Properties
-
-- Include Subscription Base Resource
+:[](data-structures/subscription.apib)
 
 
 
@@ -5160,21 +4936,7 @@ Send a GET with an email query parameter to see if an existing user exists for t
 - `date_modified`: `2012-10-26T10:34:44-0700`
 
 
-## Attribute Base Resource (object)
-
-### Properties
-
-- visibility (string): private
-- name (string, required)
-- value (string, required)
-
-## Attribute Resource (Base Resource)
-
-### Properties
-
-- Include Attribute Base Resource 
-- date_created
-- date_modified
+:[](data-structures/attribute.apib)
  
 
 ## Timezone Resource (Base Resource)
@@ -5189,89 +4951,16 @@ Send a GET with an email query parameter to see if an existing user exists for t
             - timezone
             - description
             
-## Collection Resource (object)
-A collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last.
+:[](data-structures/collection.apib)
 
-### Properties
-
-- `_links` (object)
-    - first (Link)
-    - prev (Link)
-    - next (Link)
-    - last (Link)
-    - *rel (Relation)* (Link)
+:[](data-structures/base.apib)
     
-- `_embedded` (object)
-- `total_items`: '5'
-- `returned_items`: 5
-- `limit`: 20
-- `offset`: 0
-
-## Base Resource (HAL Resource)
-
-### Properties
-
-- message
-    
-## Token Resource
-
-### Properties
-
-- access_token (string)
-- expires_in (number)
-- token_type : bearer
-- scope(enum)
-    - `client_full_access` 
-    - `user_full_accessOAuth`
-    - `store_full_acesss`
-    
-- refresh_token (string)
+:[](data-structures/token.apib)
 
 
-## HAL Resource (object)
-HAL Resource is the base type for all HAL resource models. It contains two predefined elements containing hypertext 
-links of the given resource and embedded resources. Derived resource models may add additional elements to specify the 
-state of the resource.
+:[](data-structures/hal.apib)
 
-### Properties
-
-- `_links` (object)
-
-    - curies (array[object])
-        - (object)
-            - properties
-                - name : fx
-                - href : `https://api.foxycart.com/rels/{rel}`
-                - templated : true
-            
-    - *rel (Relation)* (Link)
-        
-    
-- `_embedded` (object)
-
-## Relation (string)
-HAL introduces for Link relation types an extended representation of RFC 5988:
-
-## Link (object)
-Link object specifies a link to a target resource.
-
-### Properties
-
-- `href` (string, required) - The link URI or URI template
-
-- `templated` (boolean) - Indicates if the href attribute contains a URI Template
-
-- `type` (string) - Gives a hint on the expected media type of the target resource
-
-- `deprecation` (boolean) - Indicates that the link is deprecated
-
-- `name` (string) - A secondary key for selecting one out of multiple links
-
-- `profile` (string) - A URI providing a hint about the profile of the target resource
-
-- `title` (string) - A label for the link
-
-- `hreflang` (string) - A BCP 47 language tag identifying the language of the target resource
+:[](data-structures/link.apib)
 
 ## T (string)
 

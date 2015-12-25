@@ -1,0 +1,5277 @@
+FORMAT: 1A
+HOST: https://api-sandbox.foxycart.com
+
+# FoxyCart
+
+This Hypermedia API is designed to give you complete control over your FoxyCart store. Anything you can do in the FoxyCart admin, you can also do through this API which means you can embed Foxy into any application. 
+:[API Root](resources/root.apib)
+
+# Group Client
+
+To view and work with a client, you must be connected to the API using an OAuth token with `client_full_access` scope.
+
+Once you create a client and connect with the `client_full_access` scope, you can then create a user or connect to an existing user using the `user_full_access` OAuth scope. Once connected to the API using an OAuth token with the `user_full_access` scope, you can create a store or connect to an existing store with the `store_full_acesss` scope.
+
+When creating a client resource, the response will include the OAuth Access and Refresh tokens required to work with this resource via the API. It's important to save this information in your database. If you lose it, you'll have to do an OAuth Authorization Code grant via your browser.
+
+
+## Client Collection [/clients]
+
+### Create a new client [POST]
++ Request (application/json)
+    
+    + Attributes (Client Base Resource)
+            
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+        - token (Token Resource)
+    
+
+:[client](resources/client.apib)
+    
+
+
+
+# Group User
+
+To modify a user, you must be connected to the API using an OAuth token with user_full_access scope.
+
+A FoxyCart User is someone who manages and configures a FoxyCart Store. It is often the owner of that store, but might also be someone paid to be responsible for aspects of the store. There can be many users per store and any user can access many stores. Before creating a user, you must create a client. When you create a user, you'll get a response back containing an OAuth token giving you access to the user.
+
+## User Collection [/users]
+
+### Create a new user [POST]
+When creating a user resource, the response will include the OAuth Access and Refresh tokens required to work with this resource via the API. It's important to save this information in your database. If you lose it, you'll have to do an OAuth Authorization Code grant via your browser.
++ Request (application/json)
+    
+    + Attributes (User Base Resource)
+            
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+            Authorization: Bearer access_token      
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+        - token (Token Resource)
+    
+
+## User [/users/{id}]
+
++ Parameters
+    + id (number) - Id of a User.
+
+### View a user [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (User Resource)
+    
+### Update a user [PATCH]
++ Request (application/json)
+    
+    + Attributes (User Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (User Resource)
+    
+### Replace a user [PUT]
++ Request (application/json)
+    
+    + Attributes (User Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (User Resource)
+    
+### Delete a user [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+## User Attributes [GET /users/{id}/attributes]
+
++ Parameters
+    + id (number) - Id of a User.
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+## User Stores [GET /users/{id}/stores]
+
++ Parameters
+    + id (number) - Id of a User.
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+
+
+
+
+# Group Store
+
+A FoxyCart Store is your home for managing your online payment system as it relates to [FoxyCart's platform](http://www.foxycart.com/features/what-foxycart-does). One store will be used per organization selling online. You can create a store for free and use it as long as you like until you read ready to collect live payments from your customers. We also recommend setting up a development store along with your production store so you can test out new features. Before you create a store, you must create a client and a user. When creating a store, you'll get a response back containing an OAuth token giving you access to the store.
+
+
+## Store [/stores/{id}]
+
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a store [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Resource)
+    
+### Update a store [PATCH]
+
+
++ Request (application/json)
+    
+    + Attributes (Store Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Resource)
+    
+### Replace a store [PUT]
+
++ Request (application/json)
+    
+    + Attributes (Store Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Resource)
+    
+### Delete a store [DELETE]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+## Store Attributes [/stores/{id}/attributes]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of attributes [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new attribute [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Attribute Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Store Users [/stores/{id}/users]
+
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of users [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new user [POST]
+
++ Request (application/json)
+ 
+    + Attributes (User Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+## Store User Accesses [/stores/{id}/user_accesses]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of user_accessess [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new user_access [POST]
+
++ Request (application/json)
+ 
+    + Attributes (UserAccess Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+## Store Customers [/stores/{id}/customers]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of customers [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new customer [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Customer Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+## Store Carts [/stores/{id}/carts]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of carts [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new cart [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Cart Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Store Transactions [/stores/{id}/transactions]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of transactions [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+        - _embedded (object)
+            - `fx:transactions`
+
+## Store Subscriptions [/stores/{id}/subscriptions]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of subscriptions [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+
+
+## Store Subscription Settings [/store_subscription_settings/{id}]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View subscription_settings [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Settings Resource)
+    
+### Update  subscription_settings [PATCH]
+
++ Request(application/json)
+
+    + Attributes (Subscription Settings Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Settings Resource)   
+    
+### Replace subscription_settings [PUT]
+
++ Request(application/json)
+
+    + Attributes (Subscription Settings Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Settings Resource)       
+
+
+## Store Item Categories [/stores/{id}/item_categories]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of item_categories [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new item_category [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Item Category Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Store Taxes [/stores/{id}/taxes]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of taxes [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new tax [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Tax Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+
+## Store Payment Method Sets [/stores/{id}/payment_method_sets]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of payment_method_sets [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new payment_method_set [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Payment Method Set Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+## Store Coupons [/stores/{id}/coupons]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of coupons [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new coupon [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Coupon Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+
+## Store Template Sets [/stores/{id}/template_sets]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of template_sets [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new template_set [POST]
+
++ Request (application/json)
+    
+    + Attributes (Template Set Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Store Cart Templates [/stores/{id}/cart_templates]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of cart_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new cart_template [POST]
+
++ Request (application/json)
+    
+    + Attributes (Cart Template Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Store Cart Include Templates [/stores/{id}/cart_include_templates]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of cart_include_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new cart_include_templates [POST]
+
++ Request (application/json)
+    
+    + Attributes (Cart Include Template Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+    
+## Store Checkout Templates [/stores/{id}/checkout_templates]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of cart_include_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new checkout_template [POST]
+
++ Request (application/json)
+    
+    + Attributes (Checkout Template Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)    
+
+
+## Store Receipt Templates [/stores/{id}/receipt_templates]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of receipt_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new receipt_template [POST]
+
++ Request (application/json)
+    
+    + Attributes (Receipt Template Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)   
+    
+    
+## Store Email Templates [/stores/{id}/email_templates]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of email_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new email_template [POST]
+
++ Request (application/json)
+    
+    + Attributes (Email Template Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)       
+
+    
+## Store Error Entries [/stores/{id}/error_entries]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of error_entries [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+## Store Downloadables [/stores/{id}/downloadables]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of email_templates [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new downloadable [POST]
+
++ Request (multipart/form-data; boundary=------WebKitFormBoundaryXEppCQLTKwlRJP2e)
+
+    + Body
+        
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="file"; filename="1x1.png"
+            Content-Type: image/png
+            
+            PNG
+            
+            
+            IHDR%ÛVÊPLTE§z=ÚtRNS@æØf
+            IDAT×c`â!¼3IEND®B`
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="code"
+            
+            1x1
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="price"
+            
+            10
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="item_category_uri"
+            
+            https://api-sandbox.foxycart.com/item_categories/307
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e--
+            
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)       
+
+
+## Store Payment Gateway [/stores/{id}/payment_gateways]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of payment_gateways [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new payment_gateway [POST]
+
++ Request (application/json)
+    
+    + Attributes (Payment Gateway Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)       
+
+
+
+## Store Hosted Payment Gateway [/stores/{id}/hosted_payment_gateways]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of hosted_payment_gateways [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new hosted_payment_gateway [POST]
+
++ Request (application/json)
+    
+    + Attributes (Hosted Payment Gateway Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)       
+
+
+## Store Fraud Protections [/stores/{id}/fraud_protections]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of fraud_protections [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new fraud_protection [POST]
+
++ Request (application/json)
+    
+    + Attributes (Fraud Protection Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource) 
+           
+           
+
+## Store Payment Method Expiring [/stores/{id}/payment_methods_expiring]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of payment_methods_expiring [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+  
+
+## Store Shipping Methods [/stores/{id}/store_shipping_methods]
++ Parameters
+    + id (number) - Id of a Store.
+
+### View a list of store_shipping_methods [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new store_shipping_method [POST]
+
++ Request (application/json)
+    
+    + Attributes (Store Shipping Method Base Resource)
+    + Headers
+    
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource) 
+
+## Store Integrations [/stores/{id}/integrations]
++ Parameters
+    + id (number) - Id of a Store.
+    
+
+### View a list of integrations [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+
+   
+# Group Stores
+
+## Store Collection [/users/{id}/stores]
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
+When creating a store resource, the response will include the OAuth Access and Refresh tokens required to work with this resource via the API. It's important to save this information in your database. If you lose it, you'll have to do an OAuth Authorization Code grant via your browser.
+
++ Parameters
+    + id (number) - Id of a User.
+
+### Create a new store [POST]
++ Request (application/json)
+    
+    + Attributes (Store Base Resource)
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+            Authorization: Bearer access_token      
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+        - token (Token Resource)
+    
+
+### View a list of stores [GET]
+
++ Request (application/json)
+    
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+            Authorization: Bearer access_token      
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+# Group Property Helpers
+
+## Property Helpers [GET /property_helpers]    
+Property helpers are links to various helpers for determining default values for resource properties along with other helpful API information.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+
+    
+## Checkout Types [GET /property_helpers/checkout_types]    
+List of valid checkout type values for the Store resource `checkout_type` setting.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the correct values for the Store checkout_type field. The values are listed in the format value => description.`
+    
+        - values (object)
+            - default_account : `Allow guest and customer accounts, default to account`
+            - default_guest: `Allow guest and customer accounts, default to guest`
+            - account_only: Allow customer accounts only
+            - guest_only: Allow guests only
+
+
+## Customer Password Hash Types [GET /property_helpers/customer_password_hash_types]    
+List of valid customer password hash type values for the Store resource `customer_password_hash_type` setting.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: The values listed here are the correct values for the Store `customer_password_hash_type` field. The values are listed in the format value => description.
+        - values(object)
+            - *rel (string)* (object)
+                - description
+                - config
+
+
+## Default Templates [GET /property_helpers/default_templates]   
+
+Get default templates for the cart, checkout, receipt and email.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `Use these resources for setting a default template style for your store.`
+
+
+
+## Cart Include default templates [GET /property_helpers/default_templates/cart_include]   
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Default Template Resource)               
+
+
+
+## Cart default templates [GET /property_helpers/default_templates/cart]   
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Default Template Resource)
+    
+
+## Checkout default templates [GET /property_helpers/default_templates/checkout]   
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Default Template Resource)
+    
+
+## Receipt default templates [GET /property_helpers/default_templates/receipt]   
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Default Template Resource)
+    
+
+## Email default templates [GET /property_helpers/default_templates/email]   
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Default Template Resource)
+        
+    
+## Hosted Payment Gateways [GET /property_helpers/hosted_payment_gateways]   
+
+Hosted Payment Gateways such as PayPal, BitPay, and Dwolla.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the various hosted_payment_gateways types supported. The values are listed in the format value => description.`
+        - values (object)
+            - *rel (string)* (object)        
+                - name: PayPal Express Checkout
+                - id_description: Account Email Address
+                - test_id: sandbox@foxycart.com
+                - key_description
+                - test_key
+                - third_party_key_description 
+                - test_third_party_key
+                - supports_auth_only: false
+                - supports_3d_secure: false
+                - additional_fields: null
+                
+
+## Language Strings [GET /property_helpers/language_strings{?language}]   
+
+List of the default language strings that can be overriden.
+
++ Parameters
+    + language (optional, string) - Supported language string
+        + Default: english
+        
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the default language strings and can be overridden using a LanguageOverride. You can filter by a specific language by passing in ?language=<supported language string>`
+        - values (object)
+        
+        
+## Locale Codes [GET /property_helpers/locale_codes]   
+
+List of all supported locales.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the correct values for the Store locale_code field. The values are listed in the format value => description.`
+        - values (object)
+            - *rel (string)* (string)    
+
+## Payment Gateways [GET /property_helpers/payment_gateways]   
+
+List of supported Payment Gateways and valid entries for that resource's type setting.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The key values listed here are the correct values for the PaymentGateway type field. It also includes all of the additional default values for a payment gateway.`
+        - values (object)
+            - *rel (string)* (object)        
+                - name: Authorize.net
+                - id_description: API ID
+                - test_id: BxFSnPy7
+                - key_description: Transaction Key
+                - test_key: 8SPBTpqs4uf2ZwM8
+                - third_party_key_description
+                - test_third_party_key
+                - supports_auth_only: 1
+                - supports_3d_secure: 0
+                - additional_fields: null
+                
+
+## Shipping Address Types [GET /property_helpers/shipping_address_types]   
+
+List of valid address type values for the Store resource shipping_address_type setting.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the correct values for the Store shipping_address_type field. The values are listed in the format value => description.`
+        - values (object)
+            - residential: Rate as Residential
+            - commercial: Rate as Commercial
+            - determine_by_company: Rate based on Company field
+            
+
+
+## Countries [GET /property_helpers/countries]   
+
+List of valid country values for any country setting such as the Store resource store_country.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the correct values for the Store store_country field. The values are listed in the format value => description.`
+        - values (object)
+            - *rel (string)* (object)        
+                - `default`: Afghanistan
+                - cc2: AF
+                - cc3: AFG
+                - alternate_values (array[string]
+                - boost: 1
+                - has_regions: false
+                - regions_required: false
+                - regions_type: state
+                - active: true
+                
+
+
+
+## Regions [GET /property_helpers/regions{?country_code}]   
+
+List of valid region values. It defaults to US states, but you can filter for other country states using ?country_code=
+
++ Parameters
+    + country_code (optional, string) - Country code
+        + Default: US
+    
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Base Resource)
+        - message: `The values listed here are the correct values for the Store store_state field for the given country code. The values are listed in the format value => description. If no values are specified, any store_state value can be used for this country code.`
+        - values (object)
+            - *rel (string)* (object)        
+                - `default`: Alabama
+                - code: AL
+                - alternate_values (array)
+                - boost
+                - active: true
+
+
+
+## Store Versions [GET /property_helpers/store_versions]   
+
+Store versions available along with their changelog details.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Collection Resource)
+                
+            
+## Timezones [GET /property_helpers/timezones]   
+
+List of valid timezones for the store resource timezone setting.
+
++ Request 
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+    + Attributes (Timezone Resource)
+        
+
+    
+# Group Token
+The OAuth token endpoint for all access and refresh token requests. Ideally, the client should authenticate using HTTP Basic Authentication as described in the OAuth 2.0 RFC, though you can also POST the client_id and client_secret directly.
+
+**Authorization Grant**: Once you've been granted an Authorization Code using our authorization end point (`https://my.foxycart.com/authorize`), you POST to the token endpoint with a `grant_type=authorization_code&code={authorization_code}&redirect_uri={redirect_uri}` (If not doing HTTP Basic Auth, you will have to also include the `&client_id={client_id}&client_secret={client_secret}`). The response will give you your access_token and refresh_token.
+
+**Refresh Token**: The OAuth endpoint for obtaining a new access_token using an existing refresh_token. Access tokens expire after 7200 seconds (2 hours) and refresh tokens expire after 315360000 seconds (10 years). Post www-form-url-encoded data as follows: `grant_type=refresh_token&refresh_token={refresh_token}` (If not doing HTTP Basic Auth, you will have to also include the `&client_id={client_id}&client_secret={client_secret}`).
+
+You can also send JSON data instead of `application/x-www-form-urlencoded` if you send a `Content-type: application/json` header. This token response, including both the access_token and refresh_token should be saved in your database according to your OAuth needs.
+
+## Update an OAuth access_token [POST /token]
+
++ Request (application/x-www-form-urlencoded)
+
+    + Body
+    
+            grant_type=refresh_token&refresh_token=&code=&redirect_uri=&client_id=&client_secret=
+    
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+            
++ Response 200 (application/json) 
+
+# Group Attribute
+
+## Attribute [/store_attributes/{id}]
+
+An attribute is a non-standard property that can be applied to multiple resources such as a client, user, store, transaction, cart, subscription, shipment, item, and customer. You can set the visibility to control whether or not other client implementations can also view the property or if that property should not be visible unless connected with the proper client credentials.
+
+Client Attribute Restrictions: To modify, view or create a client attribute, you must be connected to the API using an OAuth token which has client_full_access scope.
+
+User Attribute Restrictions: To modify, view or create a user attribute, you must be connected to the API using an OAuth token which has user_full_access scope.
+
++ Parameters
+    + id (number) - Id of an Attribute.
+
+### View an attribute [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Attribute Resource)
+    
+### Update an attribute [PATCH]
++ Request (application/json)
+    
+    + Attributes (Attribute Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Attribute Resource)
+    
+### Replace an attribute [PUT]
++ Request (application/json)
+    
+    + Attributes (Attribute Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Attribute Resource)
+    
+### Delete an attribute [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+# Group User Access
+
+## User Access [/user_accesses/{id}]
+
+This resource represents a relationship between a FoxyCart store and the FoxyCart admin user who can access that store. Each user can only have one default store. If an access record for a user's default store is deleted or modified to no longer be the default, the last modified store the user has access to will become the new default store.
+
+To add a user to a store, create a new user_access resource. To remove a user, delete their user_access resource
+
++ Parameters
+    + id (number) - Id of an user_access.
+
+### View a user_access [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (UserAccess Resource)
+    
+### Update a user_access [PATCH]
++ Request (application/json)
+    
+    + Attributes (UserAccess Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (UserAccess Resource)
+    
+### Replace a user_access [PUT]
++ Request (application/json)
+    
+    + Attributes (UserAccess Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (UserAccess Resource)
+    
+### Delete a user_access [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+# Group Customer
+
+## Customer [/customers/{id}]
+
+A customer is the person who completes a transaction. Whenever a transaction takes place, a customer must be involved. If using a guest_checkout, an anonymous customer will be created with each transaction.
+
++ Parameters
+    + id (number) - Id of a customer.
+
+### View a customer [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Customer Resource)
+    
+### Update a customer [PATCH]
++ Request (application/json)
+    
+    + Attributes (Customer Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Customer Resource)
+    
+### Replace a customer [PUT]
++ Request (application/json)
+    
+    + Attributes (Customer Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Customer Resource)
+    
+### Delete a customer [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Customer Attributes [/customers/{id}/attributes]
++ Parameters
+    + id (number) - Id of a customer.
+
+### View a list of attributes [GET]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+### Create a new attribute [POST]
+
++ Request (application/json)
+ 
+    + Attributes (Attribute Base Resource)
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)    
+
+# Group Cart
+
+## Cart [/carts/{id}]
+
+A cart is an uncompleted transaction. When a customer prepares to checkout, they store the items that want to purchase in a cart first. To complete a transaction, you POST to the cart which then creates a transaction resource.
+
++ Parameters
+    + id (number) - Id of a cart.
+
+### View a cart [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Resource)
+    
+### Update a cart [PATCH]
++ Request (application/json)
+    
+    + Attributes (Cart Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Resource)
+    
+### Replace a cart [PUT]
++ Request (application/json)
+    
+    + Attributes (Cart Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Resource)
+    
+### Delete a cart [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+# Group Transaction
+
+## Transaction [/transactions/{id}]
+
+A transaction is a historical record of a cart that has been purchased by a customer. To create a transaction, you post to a cart. The only aspects of a transaction which can be modified are hide_transaction and data_is_fed.
+
+The receipt_url link relationship leads to the full HTML receipt.
+
++ Parameters
+    + id (number) - Id of a transaction.
+
+### View a transaction [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Resource)
+    
+### Update a transaction [PATCH]
++ Request (application/json)
+    
+    + Attributes (Transaction Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Resource)
+    
+### Replace a transaction [PUT]
++ Request (application/json)
+    
+    + Attributes (Transaction Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Resource)
+
+
+## Items [/transactions/{id}/items]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of items [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new item [POST]
+
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+
+
+## Payments [/transactions/{id}/payments]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of payments [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+ 
+     
+## Applied Taxes [/transactions/{id}/applied_taxes]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of applied_taxes [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Transaction Custom Fields [/transactions/{id}/transaction_custom_fields]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of transaction_custom_fields [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new transaction_custom_field [POST]
+
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+
+
+## Discounts [/transactions/{id}/discounts]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of discounts [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+
+
+
+## Shipments [/transactions/{id}/shipments]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of shipments [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Shipment [/transactions/{id}/shipment]
+
+A shipment resource contains the address for where items in a transaction grouped by a common shipto were sent.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a shipment [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Shipment Resource)
+
+
+
+## Billing Addresses [/transactions/{id}/billing_addresses]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a list of billing_addresses [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+
+
+## Billing Address [/transactions/{id}/billing_address]
+
+The billing addresses associated with this resource. These are historical addresses after a transaction takes place.
+
++ Parameters
+
+    + id (number) - Id of a transaction.
+
+### View a billing_address [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Billing Address Resource)
+    
+    
+    
+# Group Subscription
+
+## Subscription [/subscriptions/{id}]
+
+A subscription is a recurring transaction. To create a subscription, you must first create the original transaction which will be run based on the item's subscription_frequency. Items on a transaction with the same subscription_frequency, subscription_startdate, and subscription_enddate will be grouped together to create a subscription. Multiple subscriptions can be created from the same original transaction.
+
+To modify the details of a subscription such as the items involved, the amount of the subscription, the discounts in use, etc, modify the cart details linked via the transaction_template link relationship. To modify when the subscription runs, modify the frequency, next transaction dates, end dates and such directly on the subscription.
+
+If the subscription is integrated with a third party subscription system (such as PayPal Express), there may be limitiations on what can be modified such as the next_transaction_date and frequency.
+
+The sub_token_url link relationship will load up the subscription template into a full HTML cart for the store.
+
++ Parameters
+    + id (number) - Id of a subscription.
+
+### View a subscription [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Resource)
+    
+### Update a subscription [PATCH]
++ Request (application/json)
+    
+    + Attributes (Subscription Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Resource)
+    
+### Replace a subscription [PUT]
++ Request (application/json)
+    
+    + Attributes (Subscription Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Subscription Resource)
+    
+    
+# Group Item Category
+
+## Item Category [/item_categories/{id}]
+
+An item category offers a way to give items additional behaviors that cannot be accomplished by item options alone including item delivery types. When a store is first created, you will have a default item category with the code `DEFAULT`. This code can not be deleted and will be the default for all items added to the cart if no category is specified.
+
++ Parameters
+    + id (number) - Id of an item_category.
+
+### View a item_category [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Category Resource)
+    
+### Update a item_category [PATCH]
++ Request (application/json)
+    
+    + Attributes (Item Category Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Category Resource)
+    
+### Replace a item_category [PUT]
++ Request (application/json)
+    
+    + Attributes (Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Category Resource)
+    
+### Delete a item_category [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+
+## Tax Item Categories [/item_categories/{id}/tax_item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a item_category.
+
+### View a list of tax_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new tax_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+    
+    
+# Group Tax
+
+## Tax [/taxes/{id}]
+
+Tax rates are determined by the customer's shipping location. If you are within the United States, you can set is_live to true to automatically calculate live tax rates based on the customer's postal code. Otherwise, you can set up global taxes which don't change based on location, country taxes which change based on the country, regional taxes which change based on the customer's state / province, and local taxes which change based on the customer's city. If the location matches, the tax rate is applied. You can also specify whether or not this tax rate should also be applied to the shipping costs.
+
+Once a tax rate is configured, it must be applied to a item category for it to be used by creating a tax_item_category resource.
+
++ Parameters
+    + id (number) - Id of a tax.
+
+### View a tax [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Resource)
+    
+### Update a tax [PATCH]
++ Request (application/json)
+    
+    + Attributes (Tax Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Resource)
+    
+### Replace a tax [PUT]
++ Request (application/json)
+    
+    + Attributes (Tax Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Resource)
+    
+### Delete a tax [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+## Tax Item Categories [/taxes/{id}/tax_item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a tax.
+
+### View a list of tax_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new tax_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+
+
+# Group Payment Method Set
+
+## Payment Method Set [/payment_method_sets/{id}]
+
+A Payment Method Set is where you configure your payment gateway and your hosted gateways as being in live or test mode and where you enable the pay by purchase order option for your store. It also links to your payment gateway settings and your enabled hosted payment gateways. By default, the linked payment_gateway resource is automatically embedded in the response.
+
++ Parameters
+    + id (number) - Id of a `payment_method_set`.
+
+### View a payment_method_set [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Resource)
+    
+### Update a payment_method_set [PATCH]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Resource)
+    
+### Replace a payment_method_set [PUT]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Resource)
+    
+### Delete a payment_method_set [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Payment Method Set Hosted Payment Gateways [/payment_method_sets/{id}/hosted_payment_gateways]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a `payment_method_set`.
+
+### View a list of payment_method_set_hosted_payment_gateways [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new payment_method_set_hosted_payment_gateway [POST]
+
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+
+
+## Payment Method Set Fraud Protections [/payment_method_sets/{id}/fraud_protections]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a `payment_method_set`.
+
+### View a list of payment_method_set_fraud_protections [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new fraud_protection [POST]
+
++ Request (application/json)
+    
+    + Attributes (Fraud Protection Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Fraud Protection Resource)
+    
+        
+
+# Group Coupon
+
+## Coupon [/coupons/{id}]
+
+Coupons are where you configure discounts for your customers to use for an entire order. Each coupon can have one or more coupon code associated with the coupon resource. The syntax for creating coupon discount strings can be found in the FoxyCart documentation.
+
++ Parameters
+    + id (number) - Id of a coupon.
+
+### View a coupon [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Resource)
+    
+### Update a coupon [PATCH]
++ Request (application/json)
+    
+    + Attributes (Coupon Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Resource)
+    
+### Replace a coupon [PUT]
++ Request (application/json)
+    
+    + Attributes (Coupon Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Resource)
+    
+### Delete a coupon [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+## Coupon Codes [/coupons/{id}/codes]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a coupon.
+
+### View a list of coupon_codes [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new coupon_code [POST]
+
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+
+## Coupon Item Categories [/coupons/{id}/item_categories]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a coupon.
+
+### View a list of coupon_item_categories [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new coupon_item_category [POST]
+
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+        
+
+# Group Template Set
+
+## Template Set [/template_sets/{id}]
+
+Template sets are collections of templates such as the cart, checkout and receipt for a given store. Currently, we only support a single default template in the store front end, but in the future we will support multiple templates available for a single store.
+
++ Parameters
+    + id (number) - Id of a template_set.
+
+### View a template_set [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Template Set Resource)
+    
+### Update a template_set [PATCH]
++ Request (application/json)
+    
+    + Attributes (Template Set Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Template Set Resource)
+    
+### Replace a template_set [PUT]
++ Request (application/json)
+    
+    + Attributes (Template Set Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Template Set Resource)
+    
+### Delete a template_set [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Language Overrides [/template_sets/{id}/language_overrides]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a template_set.
+
+### View a list of language_overrides [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+### Create a new language_override [POST]
+
++ Request (application/json)
+    
+    + Attributes (Language Override Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Language Override Resource)
+     
+
+
+# Group Cart Template
+
+## Cart Template [/cart_templates/{id}]
+
+The Cart Template contains the Twig content used to display the full page cart for your store. To use the default responsive theme, leave the `content` property empty. If you want to set your own template content, configure a `content_url` and then POST to the `cache` link relationship to cache your store's cart template. This will run your content through our caching system which will rewrite all the JavaScript, CSS, and HTML to cache images securely on our servers.
+
++ Parameters
+    + id (number) - Id of a cart_template.
+
+### View a cart_template [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Template Resource)
+    
+### Update a cart_template [PATCH]
++ Request (application/json)
+    
+    + Attributes (Cart Template Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Template Resource)
+    
+### Replace a cart_template [PUT]
++ Request (application/json)
+    
+    + Attributes (Cart Template Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Template Resource)
+    
+### Delete a cart_template [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+    
+
+# Group Cart Include Template
+
+## Cart Include Template [/cart_include_templates/{id}]
+
+The Cart Include Template contains the Twig content used to display the actual cart data within your sidecart, full page cart, checkout, and receipt pages. When you include `cart.inc.twig` in any of your templates, this is the content that will be included. To use the default responsive theme, leave the `content` property empty. If you want to set your own template content, configure a `content_url` and then POST to the cache link relationship to `cache` your store's cart include template. This will run your content through our caching system which will rewrite all the JavaScript, CSS, and HTML to cache images securely on our servers.
+
++ Parameters
+    + id (number) - Id of a `cart_include_template`.
+
+### View a cart_include_template [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Include Template Resource)
+    
+### Update a cart_include_template [PATCH]
++ Request (application/json)
+    
+    + Attributes (Cart Include Template Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Include Template Resource)
+    
+### Replace a cart_include_template [PUT]
++ Request (application/json)
+    
+    + Attributes (Cart Include Template Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Cart Include Template Resource)
+    
+### Delete a cart_include_template [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+    
+# Group Checkout Template
+
+## Checkout Template [/checkout_templates/{id}]
+
+The Checkout Template contains the Twig content used to display the checkout page for your store. To use the default responsive theme, leave the `content` property empty. If you want to set your own template content, configure a `content_url` and then POST to the `cache` link relationship to cache your store's checkout template. This will run your content through our caching system which will rewrite all the JavaScript, CSS, and HTML to cache images securely on our servers.
+
++ Parameters
+    + id (number) - Id of a checkout_template.
+
+### View a checkout_template [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Checkout Template Resource)
+    
+### Update a checkout_template [PATCH]
++ Request (application/json)
+    
+    + Attributes (Checkout Template Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Checkout Template Resource)
+    
+### Replace a checkout_template [PUT]
++ Request (application/json)
+    
+    + Attributes (Checkout Template Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Checkout Template Resource)
+    
+### Delete a checkout_template [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Receipt Template
+
+## Receipt Template [/receipt_templates/{id}]
+
+The Receipt Template contains the Twig content used to display the receipt page for your store. To use the default responsive theme, leave the `content` property empty. If you want to set your own template content, configure a `content_url` and then POST to the `cache` link relationship to cache your store's receipt template. This will run your content through our caching system which will rewrite all the JavaScript, CSS, and HTML to cache images securely on our servers.
+
++ Parameters
+    + id (number) - Id of a receipt_template.
+
+### View a receipt_template [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Receipt Template Resource)
+    
+### Update a receipt_template [PATCH]
++ Request (application/json)
+    
+    + Attributes (Receipt Template Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Receipt Template Resource)
+    
+### Replace a receipt_template [PUT]
++ Request (application/json)
+    
+    + Attributes (Receipt Template Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Receipt Template Resource)
+    
+### Delete a receipt_template [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Email Template
+
+## Email Template [/email_templates/{id}]
+
+The Email Template contains the Twig content used to display the email receipt sent to your customers. We support both html and text emails, so you can provide `content_html` and `content_text` content. To use the default theme, leave the `content_html` and `content_text` properties empty. If you want to set your own template content, configure a `content_html_url` and/or `content_text_url` and then POST to the `cache` link relationship to cache your store's email template.
+
++ Parameters
+    + id (number) - Id of a email_templates.
+
+### View a email_templates [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Email Template Resource)
+    
+### Update a email_templates [PATCH]
++ Request (application/json)
+    
+    + Attributes (Email Template Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Email Template Resource)
+    
+### Replace a email_templates [PUT]
++ Request (application/json)
+    
+    + Attributes (Email Template Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Email Template Resource)
+    
+### Delete a email_templates [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+# Group Error Entry
+
+## Error Entry [/error_entries/{id}]
+
+An error entry is a logged error for your store. Many different interactions can add error entries such as a customer attempting to checkout with a failed payment method or failed response from our webhook system. These entries can be hidden from the admin using the `hide_error` property.
+
++ Parameters
+    + id (number) - Id of an error_entry.
+
+### View an error_entry [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Error Entry Resource)
+    
+### Update an error_entry [PATCH]
++ Request (application/json)
+    
+    + Attributes (Error Entry Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Error Entry Resource)
+    
+### Replace an error_entry [PUT]
++ Request (application/json)
+    
+    + Attributes (Error Entry Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Error Entry Resource)
+    
+### Delete an error_entry [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Downloadable
+
+## Downloadable [/downloadables/{id}]
+
+Downloadables are items configured directly in Foxy for users to purchase and download. When creating a downloadable, you'll also send the file directly. Additionally, the downloadable must have a `item_category_uri` of an `item_category` which is configured for downloaded item delivery.
+
++ Parameters
+    + id (number) - Id of a downloadable.
+
+### View a downloadable [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Downloadable Resource)
+    
+### Update a downloadable [PATCH]
++ Request (application/json)
+    
+    + Attributes (Downloadable Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Downloadable Resource)
+
++ Request (multipart/form-data; boundary=------WebKitFormBoundaryXEppCQLTKwlRJP2e)
+
+    + Body
+        
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="file"; filename="1x1.png"
+            Content-Type: image/png
+            
+            PNG
+            
+            
+            IHDR%ÛVÊPLTE§z=ÚtRNS@æØf
+            IDAT×c`â!¼3IEND®B`
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="code"
+            
+            1x1
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="price"
+            
+            10
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="item_category_uri"
+            
+            https://api-sandbox.foxycart.com/item_categories/307
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e--
+            
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)  
+    
+### Replace a downloadable [PUT]
++ Request (application/json)
+    
+    + Attributes (Downloadable Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Downloadable Resource)
+    
++ Request (multipart/form-data; boundary=------WebKitFormBoundaryXEppCQLTKwlRJP2e)
+
+    + Body
+        
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="file"; filename="1x1.png"
+            Content-Type: image/png
+            
+            PNG
+            
+            
+            IHDR%ÛVÊPLTE§z=ÚtRNS@æØf
+            IDAT×c`â!¼3IEND®B`
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="code"
+            
+            1x1
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="price"
+            
+            10
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e
+            Content-Disposition: form-data; name="item_category_uri"
+            
+            https://api-sandbox.foxycart.com/item_categories/307
+            ------WebKitFormBoundaryXEppCQLTKwlRJP2e--
+            
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)  
+    
+    
+### Delete a downloadable [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+# Group Payment Gateway
+
+## Payment Gateway [/payment_gateways/{id}]
+
+A payment gateway stores the account information for your payment card gateway processor. You can assign a single payment gateway to a payment gateway set which controls if the processor is in live or in test mode.
+
+To create a payment gateway, POST to the `payment_gateways` link relationship of a store. When create a `payment_method_set` you can then use the `payment_gateway_uri` from the self link relationship of this resource.
+
++ Parameters
+    + id (number) - Id of a payment_gateway.
+
+### View a payment_gateway [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Gateway Resource)
+    
+### Update a payment_gateway [PATCH]
++ Request (application/json)
+    
+    + Attributes (Payment Gateway Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Gateway Resource)
+    
+### Replace a payment_gateway [PUT]
++ Request (application/json)
+    
+    + Attributes (Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Gateway Resource)
+    
+### Delete a payment_gateway [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Hosted Payment Gateway
+
+## Hosted Payment Gateway [/hosted_payment_gateways/{id}]
+
+A hosted payment gateway is a checkout payment method which involves the customer being redirected to a third party payment service hosted page such as PayPal or Amazon. From there, customers login and use payment mechanisms configured within that service. Not every hosted payment gateway supports subscriptions.
+
+To create a hosted payment gateway, POST to the `hosted_payment_gateways` link relationship of a store to configure your gateway credentials. Then, to enable this hosted payment gateway for your store, POST to the `payment_method_set_hosted_payment_gateways` link relationship of the payment method set you want to assign this hosted payment gateway to.
+
++ Parameters
+    + id (number) - Id of a hosted_payment_gateway.
+
+### View a hosted_payment_gateway [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Hosted Payment Gateway Resource)
+    
+### Update a hosted_payment_gateway [PATCH]
++ Request (application/json)
+    
+    + Attributes (Hosted Payment Gateway Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Hosted Payment Gateway Resource)
+    
+### Replace a hosted_payment_gateway [PUT]
++ Request (application/json)
+    
+    + Attributes (Hosted Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Hosted Payment Gateway Resource)
+    
+### Delete a hosted_payment_gateway [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Fraud Protection
+
+## Fraud Protection [/fraud_protections/{id}]
+
+A fraud protection is a configuration of your fraud protection controls such as minFraud which allow you to set thresholds for when a transaction should be rejected based on the information known about the customer placing the order. We currently support [MaxMind's minFraud](https://www.maxmind.com/en/minfraud-services) and plan to add other services in the future.
+
+To create a fraud protection, POST to the `fraud_protections` link relationship of a store. To enable that fraud protection on a payment method set, POST to the `payment_method_set_fraud_protections` link relationship using the self link relationship from this resource as the `fraud_protection_uri`.
+
++ Parameters
+    + id (number) - Id of a fraud_protection.
+
+### View a fraud_protection [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Fraud Protection Resource)
+    
+### Update a fraud_protection [PATCH]
++ Request (application/json)
+    
+    + Attributes (Fraud Protection Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Fraud Protection Resource)
+    
+### Replace a fraud_protection [PUT]
++ Request (application/json)
+    
+    + Attributes (Fraud Protection Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Fraud Protection Resource)
+    
+### Delete a fraud_protection [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Payment Method Expiring
+
+## Payment Method Expiring [/payment_methods_expiring/{id}]
+
+This resource shows you a customer payment card which is soon to expire.
+
++ Parameters
+    + id (number) - Id of a `payment_methods_expiring`.
+
+### View a payment_methods_expiring [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Expiring Resource)
+    
+
+
+
+# Group Store Shipping Method
+
+## Store Shipping Method [/store_shipping_methods/{id}]
+
+This resource represents an active shipping method for your store. It is also where you configure your account information if you want to use account-specific rate requests. This shipping method will be available for any item category with a shipping `item_delivery_type`.
+
++ Parameters
+    + id (number) - Id of a `store_shipping_method`.
+
+### View a store_shipping_method [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Shipping Method Resource)
+    
+### Update a store_shipping_method [PATCH]
++ Request (application/json)
+    
+    + Attributes (Store Shipping Method Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Shipping Method Resource)
+    
+### Replace a store_shipping_method [PUT]
++ Request (application/json)
+    
+    + Attributes (Store Shipping Method Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Store Shipping Method Resource)
+    
+### Delete a store_shipping_method [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+    
+# Group Language Override
+
+## Language Override [/language_overrides/{id}]
+
+A language override allows you to customize an individual string output by FoxyCart. You can view all the language strings via the `language_string` Property Helper and use the key values there for the `code` value of a language override.
+
++ Parameters
+    + id (number) - Id of a `language_override`.
+
+### View a language_override [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Language Override Resource)
+    
+### Update a language_override [PATCH]
++ Request (application/json)
+    
+    + Attributes (Language Override Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Language Override Resource)
+    
+### Replace a language_override [PUT]
++ Request (application/json)
+    
+    + Attributes (Language Override Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Language Override Resource)
+    
+### Delete a language_override [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+# Group Coupon Code
+
+## Coupon Code [/coupon_codes/{id}]
+
+Coupon codes are configured for each coupon you set up. They are unique codes to be used by your customers to obtain the coupon's discount.
+
+If you would like to create multiple [coupon](https://api.foxycart.com/rels/coupon) codes at once, see the coupon documentation.
+
++ Parameters
+    + id (number) - Id of a `coupon_code`.
+
+### View a coupon_code [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Update a coupon_code [PATCH]
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Replace a coupon_code [PUT]
++ Request (application/json)
+    
+    + Attributes (Coupon Code Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Resource)
+    
+### Delete a coupon_code [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+## Coupon Code Transactions [/coupon_codes/{id}/transactions]
+
+This link relationship returns a collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last. Scroll down to view a representation of a single resource embedded within this collection.
+
++ Parameters
+
+    + id (number) - Id of a coupon_code.
+
+### View a list of coupon_code_transactions [GET]
+
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)
+    
+    
+
+# Group Coupon Code Transaction
+
+## Coupon Code Transaction [/coupon_code_transactions/{id}]
+
+This resource is a historical record for every transaction which has used a specific coupon code. It contains link relationships to the coupon code used and the transaction it was used with.
+
++ Parameters
+    + id (number) - Id of a `coupon_code_transaction`.
+
+### View a coupon_code_transaction [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Code Transaction Resource)
+
+
+# Group Coupon Item Category
+
+## Coupon Item Category [/coupon_item_categories/{id}]
+
+This resource represents a relationship between a coupon and an item_category for the purpose of limiting which categories the coupon applies to. To add an item category limitation to a coupon, you create a coupon item category resource by sending a POST to the `coupon_item_categories` link relationship of a `coupon` using the `item_category` uri from its self link relationship.
+
++ Parameters
+    + id (number) - Id of a `coupon_item_category`.
+
+### View a coupon_item_category [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Update a coupon_item_category [PATCH]
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Replace a coupon_item_category [PUT]
++ Request (application/json)
+    
+    + Attributes (Coupon Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Coupon Item Category Resource)
+    
+### Delete a coupon_item_category [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Payment Method Set Hosted Payment Gateway
+
+## Payment Method Set Hosted Payment Gateway [/payment_method_set_hosted_payment_gateways/{id}]
+
+This resource represents a relationship between a payment method set and a hosted payment gateway. To add a hosted payment gateway to a payment method set, you create a payment method set hosted payment gateway resource by sending a POST to the `payment_method_set_hosted_payment_gateways` link relationship of a `payment_method_set` using the `hosted_payment_gateway` uri from its self link relationship.
+
++ Parameters
+    + id (number) - Id of a `payment_method_set_hosted_payment_gateway`.
+
+### View a payment_method_set_hosted_payment_gateway [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Update a payment_method_set_hosted_payment_gateway [PATCH]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Replace a payment_method_set_hosted_payment_gateway [PUT]
++ Request (application/json)
+    
+    + Attributes (Payment Method Set Hosted Payment Gateway Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Method Set Hosted Payment Gateway Resource)
+    
+### Delete a payment_method_set_hosted_payment_gateway [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+   
+
+
+
+# Group Tax Item Category
+
+## Tax Item Category [/tax_item_categories/{id}]
+
+This resource represents a relationship between a tax and an item category which that tax is applied to. After creating a tax, you then create tax item category entry to ensure any items purchased within that item category will have the tax you specify applied to the transaction.
+
+To apply a tax to an item category, create a new tax_item_category resource. To remove a tax from an item category, delete the tax_item_category resource.
+
++ Parameters
+    + id (number) - Id of a `tax_item_category`.
+
+### View a tax_item_category [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Update a tax_item_category [PATCH]
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Replace a tax_item_category [PUT]
++ Request (application/json)
+    
+    + Attributes (Tax Item Category Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Tax Item Category Resource)
+    
+### Delete a tax_item_category [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+    
+
+# Group Item
+
+## Item [/items/{id}]
+
+An item is a product added to a cart or contained in a transaction. Items that are part of a transaction can not be modified. Cart items, however, can be modified.
+
++ Parameters
+    + id (number) - Id of a `item`.
+
+### View a item [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Update a item [PATCH]
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Replace a item [PUT]
++ Request (application/json)
+    
+    + Attributes (Item Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Item Resource)
+    
+### Delete a item [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+
+# Group Payment
+
+## Payment [/payments/{id}]
+
+The historical record of payment applied to a given transaction which includes the payment gateway response, purchase order, third party id and/or masked payment card information.
+
++ Parameters
+    + id (number) - Id of a `payment`.
+
+### View a payment [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Payment Resource)    
+            
+            
+            
+# Group Applied Tax
+
+## Applied Tax [/applied_taxes/{id}]
+
+The historical record of taxes that were applied to a given transaction.
+
++ Parameters
+    + id (number) - Id of a `applied_tax`.
+
+### View a applied_tax [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Applied Tax Resource)
+    
+    
+
+# Group Transaction Custom Field
+
+## Transaction Custom Field [/transaction_custom_fields/{id}]
+
+For a transaction, a custom field is historical record of the custom field added to a transaction during checkout. When created during the original transaction, they are also duplicated as transaction attributes. Custom fields can be added, removed and modified after a transaction is complete.
+
+Custom fields also exist on carts and multiship shipments.
+
+Warning: in the future, custom fields may be removed, so it's advised to use attributes for reporting purposes.
+
++ Parameters
+    + id (number) - Id of a `transaction_custom_field`.
+
+### View a transaction_custom_field [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Update a transaction_custom_field [PATCH]
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Replace a transaction_custom_field [PUT]
++ Request (application/json)
+    
+    + Attributes (Transaction Custom Field Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Transaction Custom Field Resource)
+    
+### Delete a transaction_custom_field [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+
+# Group Discount
+
+## Discount [/discounts/{id}]
+
+Discounts are historical records of coupons used in a transaction.
+
++ Parameters
+    + id (number) - Id of a `discount`.
+
+### View a discount [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Discount Resource)
+
+
+            
+# Group Integration
+
+## Integration [/integration/{id}]
+
+An integration represents an active OAuth refresh token with the current store. Each OAuth integration that has been activated and approved for the current store will be represented as an integration. Integrations can be deleted which will delete the refresh token from our system.
+
+When deleting an integration, you will also be deleting any access tokens with the same client_id, user_uri, and scope. **Warning:** If you delete the integration your API client is currently using, you will have to re-authenticate your client via the OAuth Code Grant process.
+
++ Parameters
+    + id (number) - Id of an integration.
+
+### View a integration [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Integration Resource)
+    
+
+### Delete a integration [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+ 
+ 
+# Group Reporting
+
+## Reporting Home [GET /reporting]
+
+The Reporting API Home. Please see the hypermedia links for reporting options available to you.
+
++ Request    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+
+
+## Reporting Store Domain Exists [GET /reporting/reporting_store_domain_exists{?store_domain}]    
+
+Send a GET with a `store_domain` query parameter to see if an existing store exists for this store_domain value.
+
++ Parameters
+    
+    + store_domain (required, string) - This is a unique FoxyCart subdomain for your cart, checkout, and receipt.
+        
++ Request    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)   
+
+
+
+## Reporting Email Exists [GET /reporting/reporting_email_exists{?email}]    
+
+Send a GET with an email query parameter to see if an existing user exists for this email value.
+
++ Parameters
+    + email (required, string) - User email address
+
++ Request    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)   
+    
+    
+
+# Data Structures
+
+## Store Resource (Base Resource)
+
+### Properties
+
+- Include Store Base Resource 
+- `is_active`: false
+- `first_payment_date`: null
+- `date_created`: `2010-04-24T19:25:02-0700`
+- `date_modified`: `2013-07-19T11:47:26-0700`
+## Store Base Resource (object)
+
+### Properties
+
+- `store_version_uri`: `https://api.foxycart.com/property_helpers/store_versions/20`
+- `store_name` (required): `Example Store`
+- `store_domain` (required): `example`
+- `use_remote_domain`: false
+- `store_url` (required): `https://example.com/catalog`
+- `receipt_continue_url`: `http://www.example.com/thankyou`
+- `store_email` (required): `someone@example.com`
+- `from_email`: `helpdesk@example.com`
+- `postal_code` (required): `37211`
+- `region` (required): `TN`
+- `country` (required): `US`
+- `locale_code`: `en_US`
+- `hide_currency_symbol`: false
+- `hide_decimal_characters`: false
+- `use_international_currency_symbol`: false
+- `language`: `english`
+- `logo_url`: ``
+- `checkout_type`: `default_account`
+- `bcc_on_receipt_email`: false
+- `use_webhook`: true
+- `webhook_url`: `http://example.com/my_webhook_script`
+- `webhook_key`: `some super secure password your mom could not not guess`
+- `use_cart_validation`: false
+- `use_single_sign_on`: false
+- `single_sign_on_url`: `http://example.com/my_single_sign_on_script`
+- `use_email_dns`: false
+- `customer_password_hash_type`: `phpass`
+- `customer_password_hash_config`: `8`
+- `features_multiship`: false
+- `shipping_address_type`: `residential`
+- `timezone`: `America/Chicago`
+- `unified_order_entry_password`: `here I am, buying all your stufz`
+- `affiliate_id`: 0
+
+
+## User Resource (Base Resource)
+
+### Properties
+
+- Include User Base Resource 
+- `date_created`: `2007-05-23T16:09:12-0700`
+- `date_modified`: `2013-07-10T22:37:49-0700`
+
+## User Base Resource (object)
+
+### Properties
+
+- `first_name` (required) : `John`
+- `last_name` (required) : `Doe`
+- `email` (required) : `john.doe@example.com`
+- `phone`: `555-555-5555`
+- `affiliate_id`: 0
+- `is_programmer`: true
+- `is_front_end_developer`: false
+- `is_designer`: false
+- `is_merchant`: true
+
+## Client Resource (Base Resource)
+
+### Properties
+
+- client_secret
+- date_created
+- date_modified
+- Include Client Base Resource 
+
+## Client Base Resource (object)
+
+### Properties
+
+- client_id (string)
+- redirect_uri (string, required): http://example.com
+- `javascript_origin_uri` (string, required)
+- project_name: Example Project
+- project_description: `A really cool project using the API to make awesome. Lots - nd lots of awesome. Oh, and money too. People like money.`
+- company_name (required): Super amazing company
+- company_url: http://example.com
+- company_logo (string)
+- contact_name (required): John Doe
+- contact_email (required): john.doe@example.com
+- contact_phone (required): `555-555-5555`
+ 
+
+
+## UserAccess Base Resource (object)
+
+### Properties
+
+- user_uri (string, required)
+- store_uri (string, required)
+- `is_default_store` (boolean)
+ 
+## UserAccess Resource (Base Resource)
+
+### Properties
+
+- Include UserAccess Base Resource 
+- date_created
+- date_modified
+
+
+## Customer Base Resource (object)
+
+### Properties
+
+- `last_login_date`: null
+- `first_name` (required): `Test`
+- `last_name` (required): `User`
+- `email` (required): `luke.stokes+apitest998@example.com`
+- `password_salt` (string)
+- `password_hash`: `4443fe50df6b177ba84b78dd91f0958a`
+- `password_hash_type`: `md5`
+- `password_hash_config` (string)
+- `forgot_password`(string)
+
+## Customer Resource (Base Resource)
+
+### Properties
+
+- id (number)
+- `last_login_date`
+- Include Customer Base Resource
+- `forgot_password_timestamp`
+- `is_anonymous`(boolean)
+- date_created
+- date_modified
+
+## Store Version Resource (Base Resource)
+
+### Properties
+
+- `version` - `0.7.2`
+- `changelog_blog_url` - `https://www.foxycart.com/blog/0.7.2`
+- `changelog_url` - `https://admin.foxycart.com/v/0.7.2/changelog.html`
+- `changelog_content` - `... html ...`
+- `cart_types`(object)
+    - `colorbox`(object)
+        - `javascript_library`(object)
+            - `name` - `JQuery`
+            - `version` - `1.6.4`
+            - `url` - `//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js`  
+        - `javascript`(array[string])          
+        - `css` (array[string])      
+    - `none`(object)
+        - `javascript_library`(object)
+            - `name` - `JQuery`
+            - `version` - `1.6.4`
+            - `url` - `//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js`
+        - `javascript`(array[string])
+        - `css`(array[string])
+- `version_date` - `2012-01-13T12:05:06-0800`
+- `is_visible`(boolean) - 1
+- `is_beta`(boolean) - 0
+- `date_created` - `2012-01-13T12:05:06-0800`
+- `date_modified` - `2012-01-13T12:05:06-0800`
+
+
+## Cart Base Resource (object)
+
+### Properties
+
+- `customer_uri`: `https://api.foxycart.com/customers/8`
+- `total_shipping`: 0
+- `total_future_shipping`: 0
+
+
+## Cart Resource (Base Resource)
+
+### Properties
+
+- Include Cart Base Resource
+- `total_item_price`: 0
+- `total_tax`: 0
+- `total_order`: 0
+- date_created
+- date_modified
+
+
+## Transaction Base Resource (object)
+
+### Properties
+
+- `id`: 3820290
+- `is_test` (boolean): true
+- `hide_transaction` (boolean): false
+- `data_is_fed` (boolean): true
+- `transaction_date`: `2013-06-06T17:26:07-05:00`
+- `locale_code`: `en_US`
+- `customer_first_name`: `Test`
+- `customer_last_name`: `User`
+- `customer_email`: `testing@example.com`
+- `customer_ip`: `10.1.248.210`
+- `ip_country`
+- `total_item_price` (number): 10
+- `total_tax` (number): 1.9
+- `total_shipping` (number): 0
+- `total_future_shipping` (number): 0
+- `total_order` (number): 11.9
+- `status` (enum[string])
+    - approved
+    - authorized
+    - declined
+    - pending
+    - rejected
+- `date_created`: null
+- `date_modified`: `2013-06-06T15:26:07-0700`
+
+## Transaction Resource (Base Resource)
+
+### Properties
+
+- Include Transaction Base Resource
+
+
+## Subscription Base Resource (object)
+
+### Properties
+
+- `next_transaction_date`: `2014-05-01T00:00:00-0700`
+- `start_date` (required): `2010-09-15T00:00:00-0700`
+- `end_date`
+- `frequency`: `1m`
+- `error_message`
+- `past_due_amount`: 0
+- `first_failed_transaction_date`
+- `is_active`: false
+- `third_party_id`
+- `date_created`
+- `date_modified`
+
+## Subscription Resource (Base Resource)
+
+### Properties
+
+- Include Subscription Base Resource
+
+
+
+
+## Subscription Settings Base Resource(object)
+
+### Properties
+
+- `automatically_charge_past_due_amount` (boolean): true
+
+## Subscription Settings Resource (Base Resource)
+
+### Properties
+
+- Include Subscription Settings Base Resource
+- `date_created`: `2013-08-19T10:58:39-0700`
+- `date_modified`: `2013-06-06T15:26:07-0700`
+
+## Item Category Base Resource (object)
+
+### Properties
+
+- `admin_email_template_uri` (required): `https://api-sandbox.foxycart.com/email_templates/10`
+- `customer_email_template_uri`: `https://api-sandbox.foxycart.com/email_templates/10`
+- `code` (required): `DEFAULT`
+- `name` (required): `Default for all products`
+- `item_delivery_type` (enum, required)
+   
+    - Default: notshipped
+    - Members       
+        - shipped
+        - downloaded
+        - flat_rate
+        - pickup
+        - notshipped
+
+- `max_downloads_per_customer`: 3
+- `max_downloads_time_period`: 24
+- `default_weight`: 1
+- `default_weight_unit` (required): `LBS`
+- `default_length_unit` (required): `IN`
+- `shipping_flat_rate_type` (required): `per_order`
+- `shipping_flat_rate`: 0
+- `handling_fee_type` (enum, required)
+    - Default: none
+    - Members:
+        - none
+        - flat_per_order
+        - flat_per_item
+        - flat_percent
+        - flat_percent_with_minimum
+- `handling_fee`: 0
+- `handling_fee_minimum`: 0
+- `handling_fee_percentage`: 0
+- `customs_value`: 0
+- `discount_type`(enum)
+    - quantity_amount
+    - quantity_percentage
+    - price_amount
+    - price_percentage
+- `discount_name`: null
+- `discount_details`: null
+- `send_customer_email` (boolean): false
+- `send_admin_email` (boolean): false
+- `admin_email`: null
+
+
+## Item Category Resource (Base Resource)
+
+### Properties
+- Include Item Category Base Resource
+- date_created
+- date_modified
+
+
+## Tax Base Resource (object)
+
+### Properties
+- `name` (required): `Taxes`
+- `type` (required, enum)
+    - global
+    - country
+    - region
+    - local
+- `country`
+- `region`
+- `city`
+- `is_live` (boolean) : false
+- `apply_to_shipping` (boolean) : false
+- `use_origin_rates` (boolean) : false
+- `exempt_all_customer_tax_ids` (boolean) : false
+- `rate` (required, number): 0.9
+
+
+## Tax Resource (Base Resource)
+
+### Properties
+- Include Tax Base Resource
+- date_created
+- date_modified
+
+
+## Payment Method Set Base Resource (object)
+
+### Properties
+- `gateway_uri`: `https://api-sandbox.foxycart.com/payment_gateways/6`
+- `description` (required): `Default Payment Method Set`
+- `is_live` (boolean): false
+- `is_purchase_order_enabled` (boolean): false
+
+
+## Payment Method Set Resource (Base Resource)
+
+### Properties
+- Include Payment Method Set Base Resource
+- date_created
+- date_modified
+
+
+## Coupon Base Resource (object)
+
+### Properties
+- `name` (required): `test coupon`
+- `start_date`: `2015-12-01T00:00:00-0800`
+- `end_date`: null
+- `number_of_uses_allowed` (number): 0
+- `number_of_uses_allowed_per_customer` (number): 0
+- `number_of_uses_allowed_per_code` (number): 0
+- `product_code_restrictions`: ``
+- `coupon_discount_type` (required, enum)
+    - quantity_amount
+    - quantity_percentage
+    - price_amount
+    - price_percentage
+- `coupon_discount_details` (required): `1-3`
+- `combinable` (boolean): false
+- `multiple_codes_allowed` (boolean): false
+- `exclude_category_discounts` (boolean): false
+- `exclude_line_item_discounts` (boolean): false
+- `is_taxable` (boolean): false
+
+
+## Coupon Resource (Base Resource)
+
+### Properties
+- Include Coupon Base Resource
+- `number_of_uses_to_date` (number): 0
+- date_created
+- date_modified
+
+
+## Template Set Base Resource (object)
+
+### Properties
+- `cart_template_uri` (required): `https://api-sandbox.foxycart.com/cart_templates/14`
+- `cart_include_template_uri` (required): `https://api-sandbox.foxycart.com/cart_include_templates/16`
+- `checkout_template_uri` (required): `https://api-sandbox.foxycart.com/checkout_templates/18`
+- `receipt_template_uri` (required): `https://api-sandbox.foxycart.com/receipt_templates/20`
+- `email_template_uri` (required): `https://api-sandbox.foxycart.com/email_templates/10`
+- `code` (required): `DEFAULT`
+- `description` (required): `Default Template Set`
+- `language` (required): `english`
+- `locale_code` (required): `en_US`
+- `config` (required)
+
+## Template Set Resource (Base Resource)
+
+### Properties
+- Include Template Set Base Resource
+- date_created
+- date_modified
+
+
+## Cart Template Base Resource (object)
+
+### Properties
+- `description` (required): `Cart Template`
+- `content`
+- `content_url`
+
+## Cart Template Resource (Base Resource)
+
+### Properties
+- Include Cart Template Base Resource
+- date_created
+- date_modified
+
+
+## Cart Include Template Base Resource (Cart Template Base Resource)
+
+## Cart Include Template Resource (Cart Template Resource)
+
+
+## Checkout Template Base Resource (Cart Template Base Resource)
+
+## Checkout Template Resource (Cart Template Resource)
+
+
+
+## Receipt Template Base Resource (Cart Template Base Resource)
+
+## Receipt Template Resource (Cart Template Resource)
+
+
+## Email Template Base Resource (object)
+
+### Properties
+- `description` (required): `Email Receipt Template`
+- `subject`
+- `content_html`
+- `content_html_url`
+- `content_text`
+- `content_text_url`
+
+## Email Template Resource (Base Resource)
+
+### Properties
+- Include Email Template Base Resource
+- date_created
+- date_modified
+
+## Default Template Resource (Base Resource)
+
+### Properties
+- message: `These are the default templates used for the cart, checkout, receipt and emails.`
+- values (object)
+    - *rel (string)* (object)        
+        - content
+        - content_url 
+                
+                
+## Error Entry Base Resource (object)
+
+### Properties
+- `hide_error` (boolean): false
+
+## Error Entry Resource (Base Resource)
+
+### Properties
+- Include Error Entry Base Resource
+- `url`: `https://api-sandbox.foxycart.com/api_rest.php`
+- `error_message`: `DataFeed Failed: (2) 2012-08-10 12:12:49 No data returned for  [0]\n<url> malformed`
+- `user_agent`: `curl/7.21.3 (i386-pc-win32) libcurl/7.21.3 OpenSSL/0.9.8q zlib/1.2.5`
+- `referrer`
+- `ip_address`: `10.1.249.103`
+- `ip_country`
+- `post_values`
+- `get_values`
+- date_created
+- date_modified
+
+
+## Payment Gateway Base Resource (object)
+
+### Properties
+- `description`: `Default Payment Gateway`
+- `type` (required, enum)
+    - `migs_anz_egate`
+    - authorize
+    - beanstream
+    - bluefin
+    - bluepay
+    - braintree
+    - cardstream
+    - orbital_salem
+    - orbital_tampa
+    - merchantesolutions
+    - migs_commweb
+    - cybersource
+    - lucy
+    - datacash
+    - digitalriver
+    - durango
+    - echo_gateway
+    - emeriopayments
+    - emppay
+    - eprocessingnetwork
+    - eway
+    - fatzebra
+    - firstdata
+    - firstdata_e4
+    - goemerchant
+    - helcim
+    - inspire
+    - quickbooks
+    - litle
+    - migs
+    - moneris
+    - netbilling
+    - nmi
+    - offline
+    - paperless
+    - payconex
+    - paygate
+    - payjunction
+    - payleap
+    - payline
+    - paymentexpress
+    - paymentexpress_ws
+    - paymentsense
+    - payflowpro
+    - paypal
+    - paypal_express
+    - paypoint_gateway
+    - paypoint_metacharge
+    - propay
+    - paytrace
+    - plugnpay
+    - plugnpay_authnet
+    - psigate
+    - quantumgateway
+    - realex
+    - sagepayments
+    - sagepay
+    - securenet
+    - securetrading
+    - stripe
+    - totalapps
+    - transaction_express
+    - transfirst
+    - trustcommerce
+    - usaepay
+    - vanco
+    - virtualmerchant
+    - wepay
+    - westpac
+    - worldpay
+    - worldpay_business
+    - worldpay_online
+    - yuupay
+- `use_auth_only` (boolean): false
+- `account_id`
+- `account_key`
+- `third_party_key`
+- `config_3d_secure` (enum):
+    - all_cards
+    - maestro_only
+    - `all_cards_require_valid_response`
+    - `maestro_only_require_valid_response`
+- `additional_fields`
+- `test_account_id`: `BxFSnPy7`
+- `test_account_key`: `8SPBTpqs4uf2ZwM8`
+- `test_third_party_key`
+
+## Payment Gateway Resource (Base Resource)
+
+### Properties
+- Include Payment Gateway Base Resource
+- date_created
+- date_modified
+
+
+## Hosted Payment Gateway Base Resource (Payment Gateway Base Resource)
+
+## Hosted Payment Gateway Resource (Payment Gateway Resource)
+
+
+## Fraud Protection Base Resource (object)
+
+### Properties
+
+- description : "Default Min Fraud"
+- `score_threshold_reject` : 24
+ 
+## Fraud Protection Resource (Base Resource)
+
+### Properties
+
+- Include Fraud Protection Base Resource 
+- date_created
+- date_modified
+
+## Payment Method Expiring Resource (Base Resource)
+
+### Properties
+
+- `months_before_expiration`: 75
+- `first_name`: `Test`
+- `last_name`: `User`
+- `email`: `luke.stokes+apitest998@example.com`
+- `cc_type`: `Visa`
+- `cc_number_masked`: `xxxxxxxxxxxx1111`
+- `cc_exp_month`: `12`
+- `cc_exp_year`: `2020`
+- `date_created`: null
+- `date_modified`: `2013-08-16T14:13:54-0700`
+
+
+## Store Shipping Method Base Resource (object)
+
+### Properties
+
+- `shipping_method_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_methods/1`
+- `shipping_container_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_containers/3`
+- `shipping_drop_type_uri`: `https://api-sandbox.foxycart.com/property_helpers/shipping_drop_types/7`
+- `accountid`: null
+- `password`
+- `meter_number`
+- `authentication_key`
+- `use_for_domestic` (boolean): false
+- `use_for_international` (boolean): false
+
+## Store Shipping Method Resource (Base Resource)
+
+### Properties
+
+- Include Store Shipping Method Base Resource 
+- date_created
+- date_modified
+
+
+## Downloadable Base Resource (object)
+
+### Properties
+
+- `item_category_uri` (required): `https://api-sandbox.foxycart.com/item_categories/307`
+- `name` (required): `Unicorn`
+- `code` (required): `unicorn`
+- `price` (number): 10
+
+## Downloadable Resource (Base Resource)
+
+### Properties
+
+- Include Downloadable Base Resource 
+- `file_name`: `unicorn_web.png`
+- `file_size`: 267069
+- `upload_date`: `2015-04-16T09:33:28-0700`
+- `date_created`: `2015-04-16T09:33:28-0700`
+- `date_modified`: `2015-04-16T09:46:46-0700`
+
+## Integration Resource (Base Resource)
+
+### Properties
+
+- user_uri: https://api-sandbox.foxycart.com/users/2
+- client_id: super_duper_client_id
+- scope: user_full_access store_id_8 store_full_access
+- expires: 2147483647
+- project_name: My Super Project
+- project_description: A really cool project you should be excited about.
+- company_name: FoxyCart
+- company_url: http://www.foxycart.com
+- company_logo: http://www.foxycart.com/assets/templates/v02/slices/foxycart-seo-ecommerce.png
+- contact_name: Firstname Lastname
+- contact_email: example@example.com
+- `added_by_name`: Mada Baragau
+- `added_by_email`: mada_baragau@yahoo.com
+
+
+
+## Language Override Base Resource (object)
+
+### Properties
+
+- code (required): cart_caption
+- gateway
+- custom_value (required): The Cart of Wonder
+
+
+## Language Override Resource (Base Resource)
+
+### Properties
+
+- Include Language Override Base Resource
+- date_created: 2015-05-21T14:46:15-0700
+- date_modified: 2015-05-21T14:46:15-0700
+
+
+## Coupon Code Base Resource (object)
+
+### Properties
+
+- code (required): foo
+
+## Coupon Code Resource (Base Resource)
+
+### Properties
+
+- Include Coupon Code Base Resource
+- `number_of_uses_to_date`: 0
+- date_created: 2015-05-21T14:46:15-0700
+- date_modified: 2015-05-21T14:46:15-0700
+
+
+## Coupon Code Transaction Resource (Base Resource)
+
+### Properties
+
+- date_created: 2015-05-21T14:46:15-0700
+- date_modified: 2015-05-21T14:46:15-0700
+
+
+## Coupon Item Category Base Resource (object)
+
+### Properties
+
+- coupon_uri: `https://api-sandbox.foxycart.com/coupons/813`
+- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/307`
+
+
+## Coupon Item Category Resource (Base Resource)
+
+### Properties
+
+- Include Coupon Item Category Base Resource 
+- date_created
+- date_modified
+
+
+
+## Payment Method Set Hosted Payment Gateway Base Resource (object)
+
+### Properties
+
+- `payment_method_set_uri`: `https://api-sandbox.foxycart.com/payment_method_sets/6`
+- `hosted_payment_gateway_uri`: `https://api-sandbox.foxycart.com/hosted_payment_gateways/390`
+
+
+## Payment Method Set Hosted Payment Gateway Resource (Base Resource)
+
+### Properties
+
+- Include Payment Method Set Hosted Payment Gateway Base Resource 
+- date_created
+- date_modified
+
+
+
+
+## Tax Item Category Base Resource (object)
+
+### Properties
+
+- `item_category_uri` (required): `https://api-sandbox.foxycart.com/item_categories/13`
+- `tax_uri` (required): `https://api-sandbox.foxycart.com/taxes/1672`
+
+
+## Tax Item Category Resource (Base Resource)
+
+### Properties
+
+- Include Tax Item Category Base Resource 
+- date_created
+- date_modified
+
+
+
+## Item Base Resource (object)
+
+### Properties
+
+- `item_category_uri`: `https://api-sandbox.foxycart.com/item_categories/1`
+- `name` (required): `good stuff UPDATED`
+- `price` (required, number): 15
+- `quantity` (number): 5
+- `quantity_min` (number): 0
+- `quantity_max` (number): 0
+- `weight` (number): 0.1
+- `code`
+- `parent_code`
+- `discount_name`
+- `discount_type`
+- `discount_details`
+- `subscription_frequency`
+- `subscription_start_date`
+- `subscription_next_transaction_date`
+- `subscription_end_date`
+- `shipto`
+- `url`
+- `image`
+- `length` (number): 0
+- `width` (number): 0
+- `height` (number): 0
+- `expires` (number): 0
+
+## Item Resource (Base Resource)
+
+### Properties
+
+- Include Item Base Resource 
+- `is_future_line_item` (boolean): false
+- date_created
+- date_modified
+
+
+## Payment Resource (Base Resource)
+
+### Properties
+
+- `type`: `plastic`
+- `gateway_type`
+- `processor_response`
+- `processor_response_details`
+- `purchase_order`
+- `cc_number_masked`: `xxxxxxxxxxxx1111`
+- `cc_type`: `Visa`
+- `cc_exp_month`: `12`
+- `cc_exp_year`: `2020`
+- `fraud_protection_score` (number): 0
+- `paypal_payer_id`
+- `amount` (number): 0
+- `date_created`
+- `date_modified`
+
+
+
+## Applied Tax Resource (Base Resource)
+
+### Properties
+
+- `rate` (number): 9.35
+- `name`: `TN`
+- `amount` (number): 1.7765
+- `apply_to_handling` (boolean): true
+- `apply_to_shipping` (boolean): true
+- `is_future_tax` (boolean): false
+- `shipto`
+- `date_created`
+- `date_modified`
+
+
+## Transaction Custom Field Base Resource (object)
+
+### Properties
+
+- `name` (required): `Marketing_Opt_In`
+- `value` (required): `1`
+- `is_hidden` (boolean): false
+
+## Transaction Custom Field Resource (Base Resource)
+
+### Properties
+
+- Include Transaction Custom Field Base Resource 
+- date_created
+- date_modified
+
+
+## Discount Resource (Base Resource)
+
+### Properties
+
+- `code`: `tester`
+- `amount` (number): -1
+- `name`: `tester`
+- `display`: `-1.00`
+- `is_taxable` (boolean): false
+- `is_future_discount` (boolean): false
+- `date_created`
+- `date_modified`
+
+
+## Shipment Resource (Base Resource)
+
+### Properties
+
+- `address_name`: `Default Shipping Address`
+- `first_name`: `John`
+- `last_name`: `Doe`
+- `company`
+- `address1`: `1234 Anystreet`
+- `address2`
+- `city`: `NASHVILLE`
+- `region`: `TN`
+- `postal_code`: `37211`
+- `country`: `US`
+- `phone`: `555-555-55555`
+- `shipping_service_id`: 55
+- `shipping_service_description`: `FedEx Home Delivery`
+- `total_item_price` (number): 10
+- `total_tax` (number): 1.99
+- `total_shipping` (number): 11.29
+- `total_price` (number): 23.28
+- `date_created`: `2015-04-15T08:46:39-0700`
+- `date_modified`: `2015-04-15T08:46:39-0700`
+
+
+## Billing Address Resource (Base Resource)
+
+### Properties
+
+- `address_name`: `Default Billing Address`
+- `first_name`: `First`
+- `last_name`: `Last`
+- `company`: `my company`
+- `address1`: `12345 Any Street`
+- `address2`
+- `city`: `Any City`
+- `region`: `TN`
+- `customer_postal_code`: `37211`
+- `customer_country`: `US`
+- `customer_phone`
+- `date_created`: `2012-09-26T12:49:59-0700`
+- `date_modified`: `2012-10-26T10:34:44-0700`
+
+
+## Attribute Base Resource (object)
+
+### Properties
+
+- visibility (string): private
+- name (string, required)
+- value (string, required)
+
+## Attribute Resource (Base Resource)
+
+### Properties
+
+- Include Attribute Base Resource 
+- date_created
+- date_modified
+ 
+
+## Timezone Resource (Base Resource)
+
+### Properties
+
+- message: The values listed here are the correct values for the Store timezone field. The values are listed in a values => timezone => timezone format.
+- values(object)
+    
+    - timezone (array)
+        - (object)
+            - timezone
+            - description
+            
+## Collection Resource (object)
+A collection of resources. You can easily paginate through this collection using the hypermedia links provided and the link relationships of first, prev, next, and last.
+
+### Properties
+
+- `_links` (object)
+    - first (Link)
+    - prev (Link)
+    - next (Link)
+    - last (Link)
+    - *rel (Relation)* (Link)
+    
+- `_embedded` (object)
+- `total_items`: '5'
+- `returned_items`: 5
+- `limit`: 20
+- `offset`: 0
+
+## Base Resource (HAL Resource)
+
+### Properties
+
+- message
+    
+## Token Resource
+
+### Properties
+
+- access_token (string)
+- expires_in (number)
+- token_type : bearer
+- scope(enum)
+    - `client_full_access` 
+    - `user_full_accessOAuth`
+    - `store_full_acesss`
+    
+- refresh_token (string)
+
+
+## HAL Resource (object)
+HAL Resource is the base type for all HAL resource models. It contains two predefined elements containing hypertext 
+links of the given resource and embedded resources. Derived resource models may add additional elements to specify the 
+state of the resource.
+
+### Properties
+
+- `_links` (object)
+
+    - curies (array[object])
+        - (object)
+            - properties
+                - name : fx
+                - href : `https://api.foxycart.com/rels/{rel}`
+                - templated : true
+            
+    - *rel (Relation)* (Link)
+        
+    
+- `_embedded` (object)
+
+## Relation (string)
+HAL introduces for Link relation types an extended representation of RFC 5988:
+
+## Link (object)
+Link object specifies a link to a target resource.
+
+### Properties
+
+- `href` (string, required) - The link URI or URI template
+
+- `templated` (boolean) - Indicates if the href attribute contains a URI Template
+
+- `type` (string) - Gives a hint on the expected media type of the target resource
+
+- `deprecation` (boolean) - Indicates that the link is deprecated
+
+- `name` (string) - A secondary key for selecting one out of multiple links
+
+- `profile` (string) - A URI providing a hint about the profile of the target resource
+
+- `title` (string) - A label for the link
+
+- `hreflang` (string) - A BCP 47 language tag identifying the language of the target resource
+
+## T (string)
+

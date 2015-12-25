@@ -1,0 +1,76 @@
+## Client [/clients/{id}]
+
++ Parameters
+    + id (number) - Id of a Client.
+
+### View a client [GET]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Client Resource)
+    
+### Update a client [PATCH]
++ Request (application/json)
+    
+    + Attributes (Client Base Resource)
+    + Headers
+            
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Client Resource)
+    
+### Replace a client [PUT]
++ Request (application/json)
+    
+    + Attributes (Client Base Resource)
+    + Headers
+        
+            Authorization: Bearer access_token
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Client Resource)
+    
+### Delete a client [DELETE]
++ Request
+    
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Base Resource)
+    
+
+## Client Attributes [GET /clients/{id}/attributes]
+
++ Parameters
+    + id (number) - Id of a Client.
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer access_token            
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+
++ Response 200 (application/hal+json)
+
+    + Attributes (Collection Resource)

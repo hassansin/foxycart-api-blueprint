@@ -1,0 +1,39 @@
+# FoxyCart API Root [/]
+
+This resource does not have any attributes. Instead it offers the initial API affordances.
+
+## API starting point [GET]
+        
++ Request
+    
+    + Headers
+        
+            FOXY-API-VERSION: 1
+            Accept: application/hal+json
+    
++ Response 200 (application/hal+json)
+ 
+    + Attributes (Base Resource)
+
+
++ Request application/hal+xml
+
+    + Headers
+    
+            FOXY-API-VERSION: 1
+            Accept: application/hal+xml
+    
++ Response 200 (application/hal+xml)
+    
+    + Body
+    
+            <?xml version="1.0" encoding="UTF-8"?>
+            <resource href="https://api-sandbox.foxycart.com/">
+              <link rel="self" href="https://api-sandbox.foxycart.com/" title="Your API starting point."/>
+              <link rel="https://api.foxycart.com/rels/property_helpers" href="https://api-sandbox.foxycart.com/property_helpers" title="Various helpers used for determing valid property values."/>
+              <link rel="https://api.foxycart.com/rels" href="https://api-sandbox.foxycart.com/rels" title="Custom Link Relationships supported by this API."/>
+              <link rel="https://api.foxycart.com/rels/reporting" href="https://api-sandbox.foxycart.com/reporting" title="The Reporting API Home."/>
+              <link rel="https://api.foxycart.com/rels/create_client" href="https://api-sandbox.foxycart.com/clients" title="Create a client via POST."/>
+              <link rel="https://api.foxycart.com/rels/token" href="https://api-sandbox.foxycart.com/token" title="The OAuth endpoint for obtaining a new access_token using an existing refresh_token. Post www-form-url-encoded data as follows: grant_type=refresh_token&amp;amp;refresh_token={refresh_token}&amp;amp;client_id={client_id}&amp;amp;client_secret={client_secret}" type="application/json"/>
+              <message>Welcome to the FoxyCart API! Our hope is to be as self-documenting and RESTful as possible. Please let us know if you have any questions by posting in our forum http://forum.foxycart.com or emailing us at helpdesk@foxycart.com. As a last resort, you could read the documentation at http://wiki.foxycart.com. Your first action should be to create an OAuth Client, then a user, followed by a store.</message>
+            </resource>

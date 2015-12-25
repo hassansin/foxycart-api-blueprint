@@ -1,0 +1,27 @@
+{
+  "name": "foxycart-api-blueprint",
+  "version": "1.0.0",
+  "description": "FoxyCart Hypermedia API Blueprint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "hercule src\\apiary.apib -o apiary.apib",
+    "watch": "watch \"npm run build\" src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hassansin/foxycart-api-blueprint.git"
+  },
+  "private": true,
+  "author": "Hassansin <rezatxe@gmail.com> (https://github.com/hassansin)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hassansin/foxycart-api-blueprint/issues"
+  },
+  "homepage": "https://github.com/hassansin/foxycart-api-blueprint#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "hercule": "^1.4.0",
+    "watch": "^0.17.1"
+  }
+}

@@ -1,23 +1,58 @@
-## HAL Resource (object)
+## HAL Resource Base (object)
+
+Abstract base object. Not to be used directly. See `HAL Resource`.
+
+## HAL Resource (HAL Resource Base)
+
 HAL Resource is the base type for all HAL resource models. It contains two predefined elements containing hypertext 
 links of the given resource and embedded resources. Derived resource models may add additional elements to specify the 
 state of the resource.
 
 ### Properties
+- `_links`
+    - *relation* (Link)
+    - curies (array[CURIE], optional)
 
-- `_links` (object)
+- `_embedded`
+    - *relation* (Embedded)
 
-    - curies (array[object])
-        - (object)
-            - properties
-                - name : fx
-                - href : `https://api.foxycart.com/rels/{rel}`
-                - templated : true
-            
-    - *rel (Relation)* (Link)
-        
-    
-- `_embedded` (object)
 
-## Relation (string)
-HAL introduces for Link relation types an extended representation of RFC 5988:
+## Embedded (enum)
+
+HAL Specification:  [`_embedded` property value](https://tools.ietf.org/html/draft-kelly-json-hal-07#section-4.1.2)
+
+The value is either a descendant of `HAL Resource Base` or an array of its descendats.
+
+### Members
+- (HAL Resource Base)
+- (array[HAL Resource Base])
+
+## Link (object)
+Link object specifies a link to a target resource.
+
+### Properties
+
+- `href` (string, required) - The link URI or URI template
+
+- `templated` (boolean) - Indicates if the href attribute contains a URI Template
+
+- `type` (string) - Gives a hint on the expected media type of the target resource
+
+- `deprecation` (boolean) - Indicates that the link is deprecated
+
+- `name` (string) - A secondary key for selecting one out of multiple links
+
+- `profile` (string) - A URI providing a hint about the profile of the target resource
+
+- `title` (string) - A label for the link
+
+- `hreflang` (string) - A BCP 47 language tag identifying the language of the target resource
+ 
+## CURIE (Link)
+
+HAL Specification: [Link relations](https://tools.ietf.org/html/draft-kelly-json-hal-07#section-8.2)
+
+### Properties
+- name (string, required) : fx
+- href (string, required) : `https://api.foxycart.com/rels/{rel}`
+- templated: true (string, required, fixed)   

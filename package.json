@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "hercule src\\apiary.apib -o apiary.apib",
+    "build": "hercule src/apiary.apib -o apiary.apib",
     "watch": "watch \"npm run build\" src"
   },
   "repository": {
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/hassansin/foxycart-api-blueprint#readme",
   "dependencies": {},
   "devDependencies": {
-    "hercule": "^1.4.0",
+    "hercule": "^2.0.4",
     "watch": "^0.17.1"
   }
 }
